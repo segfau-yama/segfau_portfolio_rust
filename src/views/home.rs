@@ -79,24 +79,24 @@ pub fn HistoryPage() -> Element {
     ]);
 
     rsx! {
-        div { class: "container md:mx-auto my-10 justify-between px-4",
+        div { class: "container md:mx-auto my-10 justify-center px-4",
             h1 { class: "text-center text-5xl font-bold mb-10", "History" }
 
             // gap を親で作ると“隙間”に線が出ないので、item 側の py で間隔を作る
-            div { class: "flex flex-col",
+            div { class: "grid grid-cols-3",
 
                 // Signal<Vec<T>> は docs の通り .iter() で回せる
                 for history in histories.iter() {
                     // key は安定したユニーク値を推奨（例では time を使用）
-                    div { class: "flex flex-row md:h-24 h-32",
+                    div { class: "grid grid-rows-subgrid grid-cols-[3fr_1fr_3fr] col-span-3",
 
                         // time
-                        div { class: "block flex-3 text-right font-semibold text-2xl text-gray-700 content-center",
+                        div { class: " font-semibold text-2xl text-gray-700 flex items-center justify-end col-start-1",
                             {history.time.clone()}
                         }
 
                         // divider: 上線 / dot / 下線（Vuetify の VTimelineDivider 的）
-                        div { class: "block flex flex-col flex-1 items-center content-center",
+                        div { class: "flex flex-col items-center col-start-2 h-24",
                             div {
                                 class: format!("border-3 flex-auto border-gray-300 {}", if history.hide == Some("top") { "invisible" } else { "" })
                             }
@@ -107,7 +107,7 @@ pub fn HistoryPage() -> Element {
                         }
 
                         // content
-                        div { class: "block text-left text-lg flex-3 content-center",
+                        div { class: "text-left sm:text-lg text-md flex flex-col items-start justify-center col-start-3",
                             {
                                 history.text.clone()
                                     .split('\n')
@@ -195,12 +195,12 @@ pub fn WorkPage() -> Element {
                 "Work"
             }
             div {
-                class: "flex flex-wrap justify-center",
+                class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center",
                 for card in cards.iter() {
                     Card {
                         title: card.title.clone(),
                         text: card.text.clone(),
-                        width: "w-full md:w-1/2 lg:w-1/3".to_string(),
+                        width: "w-full".to_string(),
                         image: card.image.clone(),
                     }
                 }
