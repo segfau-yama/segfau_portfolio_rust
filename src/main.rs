@@ -79,7 +79,7 @@ pub fn Wrapper() -> Element {
                     }
                 }
             }
-            div { class: "container bg-white pb-10 max-w-screen-lg mx-auto",
+            div { class: "container bg-white pb-10 max-w-screen-xl mx-auto",
                 Outlet::<Route> {}
             }
             Footer {}

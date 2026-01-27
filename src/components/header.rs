@@ -11,7 +11,7 @@ pub struct HeaderProps {
 pub fn Header(props: HeaderProps) -> Element {
     rsx! {
         nav { class: "block {props.size} px-10 {props.color} sticky top-0 z-[9999]",
-            div { class: "container flex flex-wrap items-center sm:justify-between justify-center text-slate-50 max-w-screen-lg mx-auto",
+            div { class: "container flex flex-wrap items-center sm:justify-between justify-center text-slate-50 max-w-screen-xl mx-auto",
                 {props.children}
             }
         }

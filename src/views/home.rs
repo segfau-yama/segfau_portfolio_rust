@@ -14,7 +14,7 @@ pub fn Home() -> Element {
                 "Profile"
             }
             div {
-                class: "flex justify-center flex-wrap space-6",
+                class: "flex flex-wrap gap-6 justify-center",
                 div {
                     class: "
                         flex

@@ -5,7 +5,7 @@ use dioxus::prelude::*;
 pub fn Footer() -> Element {
     rsx! {
         footer { class: "block px-4 py-2 mx-auto w-full lg:px-8 lg:py-3 bg-emerald-500 p-8",
-            div { class: "container flex flex-wrap items-center justify-between mx-auto text-slate-50 max-w-screen-lg mx-auto",
+            div { class: "container flex flex-wrap items-center justify-between text-slate-50 max-w-screen-xl mx-auto",
                 svg {
                     class: "w-10 h-10",
                     fill: "currentColor",

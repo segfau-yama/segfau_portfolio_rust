@@ -13,7 +13,7 @@ pub fn Avatar(props: AvatarProps) -> Element {
         div { class: "flex items-center gap-4",
             img {
                 alt: "avatar",
-                class: "inline-block relative object-cover object-center rounded-{props.rounded} w-[{props.size}] h-[{props.size}]",
+                class: "inline-block relative object-cover object-center rounded-{props.rounded} size-[{props.size}]",
                 src: props.image,
             }
         }
