@@ -4,8 +4,8 @@ use dioxus::prelude::*;
 #[component]
 pub fn Footer() -> Element {
     rsx! {
-        footer { class: "w-full bg-white p-8",
-            div { class: "flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between",
+        footer { class: "block px-4 py-2 mx-auto w-full lg:px-8 lg:py-3 bg-emerald-500 p-8",
+            div { class: "container flex flex-wrap items-center justify-between mx-auto text-slate-50",
                 svg {
                     class: "w-10 h-10",
                     fill: "currentColor",
@@ -18,35 +18,35 @@ pub fn Footer() -> Element {
                 ul { class: "flex flex-wrap items-center gap-y-2 gap-x-8",
                     li {
                         a {
-                            class: "text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm",
+                            class: "text-slate-50 hover:text-slate-200 focus:text-slate-400 text-sm",
                             href: "#",
                             " About Us "
                         }
                     }
                     li {
                         a {
-                            class: "text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm",
+                            class: "text-slate-50 hover:text-slate-200 focus:text-slate-400 text-sm",
                             href: "#",
                             " License "
                         }
                     }
                     li {
                         a {
-                            class: "text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm",
+                            class: "text-slate-50 hover:text-slate-200 focus:text-slate-400 text-sm",
                             href: "#",
                             " Contribute "
                         }
                     }
                     li {
                         a {
-                            class: "text-slate-700 hover:text-slate-500 focus:text-slate-500 text-sm",
+                            class: "text-slate-100 hover:text-slate-300 focus:text-slate-300 text-sm",
                             href: "#",
                             " Contact Us "
                         }
                     }
                 }
             }
-            p { class: "block mb-4 text-sm text-center text-slate-500 md:mb-0 border-t border-slate-200 mt-4 pt-4",
+            p { class: "block mb-4 text-sm text-center text-slate-100 md:mb-0 border-t border-slate-200 mt-4 pt-4",
                 " Copyright © 2024\u{a0} "
                 a {
                     href: "https://material-tailwind.com/",
