@@ -10,8 +10,8 @@ pub struct HeaderProps {
 #[component]
 pub fn Header(props: HeaderProps) -> Element {
     rsx! {
-        nav { class: "block w-full px-4 lg:px-8 {props.size} mx-auto {props.color} bg-opacity-10 sticky top-0 shadow backdrop-blur-lg backdrop-saturate-150 z-[9999]",
-            div { class: "container flex flex-wrap items-center justify-between mx-auto text-slate-50",
+        nav { class: "block {props.size} px-10 {props.color} sticky top-0 z-[9999]",
+            div { class: "container flex flex-wrap items-center sm:justify-between justify-center text-slate-50 max-w-screen-lg mx-auto",
                 {props.children}
             }
         }
@@ -26,7 +26,7 @@ pub struct HeaderTitleProps {
 pub fn HeaderTitle(props: HeaderTitleProps) -> Element {
     rsx! {
         div {
-            class: "mr-4 block cursor-pointer py-1.5 text-base text-slate-50 font-semibold",
+            class: "mr-4 block cursor-pointer py-1.5 text-base text-slate-50 font-semibold sm:text-lg text-2xl",
             {props.children}
         }
     }

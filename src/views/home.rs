@@ -7,14 +7,14 @@ pub fn Home() -> Element {
     rsx! {
         Parallax {}
         div {
-            class: "mx-auto my-10 justify-center",
+            class: "mx-auto my-10 px-4 justify-center",
 
             h1 {
                 class: "text-center text-5xl font-bold mb-6",
                 "Profile"
             }
             div {
-                class: "flex justify-center sm:flex-row flex-col space-6",
+                class: "flex justify-center flex-wrap space-6",
                 div {
                     class: "
                         flex
@@ -44,87 +44,72 @@ pub fn Home() -> Element {
                 }
             }
         }
-        div {
-            HistoryPage {}
-            // class: "container mx-auto my-10 px-4 justify-center",
-            // Timeline {
-            //     TimelineItem {
-            //         title: "Timeline Title Here",
-            //         content: "The key to more success is to have a lot of pillows. Put it this way, it took me twenty five years to get these plants, twenty five years of blood sweat and tears, and I'm never giving up, I'm just getting started. I'm up to something. Fan luv."
-            //     }
-            //     TimelineItem {
-            //         title: "Timeline Title Here",
-            //         content: "The key to more success is to have a lot of pillows. Put it this way, it took me twenty five years to get these plants, twenty five years of blood sweat and tears, and I'm never giving up, I'm just getting started. I'm up to something. Fan luv."
-            //     }
-            // }
-        }
-        Card {}
+        HistoryPage {}
+        WorkPage {}
     }
 }
 
 
-#[derive(Clone)]
-struct History {
+#[derive(PartialEq, Clone)]
+pub struct History {
     time: &'static str,
     text: &'static str,
-    top: bool,
-    bottom: bool,
+    hide: Option<&'static str>,
 }
 
 #[component]
 pub fn HistoryPage() -> Element {
     let histories = use_signal(|| vec![
-        History { time: "2002/3", text: "青森県にて生まれる", top: true, bottom: false },
-        History { time: "2017/3", text: "仙台高等専門学校総合工学科Ⅰ類 入学", top: false, bottom: false },
-        History { time: "2019/1", text: "Web×Iotハッカソンメイカーズチャレンジ 参加", top: false, bottom: false },
-        History { time: "2019/12", text: "Thailand-Japan Student ICT Fair 参加", top: false, bottom: false },
-        History { time: "2022/3", text: "仙台高等専門学校総合工学科Ⅰ類 卒業", top: false, bottom: false },
+        History { time: "2002/3", text: "青森県にて生まれる", hide: Some("top") },
+        History { time: "2017/3", text: "仙台高等専門学校総合工学科Ⅰ類 入学", hide: None },
+        History { time: "2019/1", text: "Web×Iotハッカソンメイカーズチャレンジ 参加", hide: None },
+        History { time: "2019/12", text: "Thailand-Japan Student ICT Fair 参加", hide: None },
+        History { time: "2022/3", text: "仙台高等専門学校総合工学科Ⅰ類 卒業", hide: None },
         History {
             time: "2022/4",
             text: "仙台高等専門学校総合工学科専攻科\n情報電子システム工学専攻 入学",
-            top: false,
-            bottom: false,
+            hide: None,
         },
-        History { time: "2022/7", text: "基本情報技術者 取得", top: false, bottom: false },
-        History { time: "2022/8", text: "第二種電気工事士 取得", top: false, bottom: false },
-        History { time: "2023/8", text: "日本高専学会学生優秀発表賞 受賞", top: false, bottom: false },
-        History { time: "2024/4", text: "製造業系の地元企業に就職", top: false, bottom: false },
-        History { time: "2026/1", text: "製造業系の地元企業を退職", top: false, bottom: false },
-        History { time: "2026/1", text: "SES系の企業に就職", top: false, bottom: true },
+        History { time: "2022/7", text: "基本情報技術者 取得", hide: None },
+        History { time: "2022/8", text: "第二種電気工事士 取得", hide: None },
+        History { time: "2023/8", text: "日本高専学会学生優秀発表賞 受賞", hide: None },
+        History { time: "2024/4", text: "製造業系の地元企業に就職", hide: None },
+        History { time: "2026/1", text: "製造業系の地元企業を退職", hide: None },
+        History { time: "2026/1", text: "SES系の企業に就職", hide: Some("bottom") },
     ]);
 
     rsx! {
-        div { class: "container mx-auto my-10 place-items-center",
+        div { class: "container md:mx-auto my-10 justify-between px-4",
             h1 { class: "text-center text-5xl font-bold mb-10", "History" }
 
             // gap を親で作ると“隙間”に線が出ないので、item 側の py で間隔を作る
-            div { class: "flex flex-col space-6",
+            div { class: "flex flex-col",
 
                 // Signal<Vec<T>> は docs の通り .iter() で回せる
                 for history in histories.iter() {
                     // key は安定したユニーク値を推奨（例では time を使用）
-                    div { class: "grid grid-cols-[6rem_2rem_1fr] gap-6",
+                    div { class: "flex flex-row md:h-24 h-32",
 
                         // time
-                        div { class: "text-right font-semibold text-gray-700 pt-1 content-center",
-                            {history.time}
+                        div { class: "block flex-3 text-right font-semibold text-2xl text-gray-700 content-center",
+                            {history.time.clone()}
                         }
 
                         // divider: 上線 / dot / 下線（Vuetify の VTimelineDivider 的）
-                        div { class: "flex flex-col items-center self-stretch",
+                        div { class: "block flex flex-col flex-1 items-center content-center",
                             div {
-                                class: format!("border-3 flex-1 border-gray-300 {}", if history.top { "invisible" } else { "" })
+                                class: format!("border-3 flex-auto border-gray-300 {}", if history.hide == Some("top") { "invisible" } else { "" })
                             }
                             div { class: "w-8 h-8 border-4 border-gray-300 rounded-full bg-emerald-500" }
                             div {
-                                class: format!("border-3 flex-1 border-gray-300 {}", if history.bottom { "invisible" } else { "" })
+                                class: format!("border-3 flex-auto border-gray-300 {}", if history.hide == Some("bottom") { "invisible" } else { "" })
                             }
                         }
 
                         // content
-                        div { class: "p-4 text-left",
+                        div { class: "block text-left text-lg flex-3 content-center",
                             {
-                                history.text
+                                history.text.clone()
                                     .split('\n')
                                     .map(|line| rsx! {
                                         span { "{line}" br {} }
@@ -134,6 +119,93 @@ pub fn HistoryPage() -> Element {
                     }
                 }
             }
+        }
+    }
+}
+
+#[derive(PartialEq, Clone)]
+pub struct CardData {
+    title: &'static str,
+    text: &'static str,
+    image: &'static str,
+}
+
+#[component]
+pub fn WorkPage() -> Element {
+    let cards = use_signal(|| vec![
+        CardData {
+            title: "im920s_arduino",
+            text: 
+            "
+                Arduino UNOとIM920sでシリアル通信を行うスケッチ。
+                PS3コントローラとの接続、シリアルモニタからのコマンド打ち込みが可能。
+            ",
+            image: "https://segfau-yama.github.io/segfau-portfolio/assets/im920s-eddeb179.webp",
+        },
+        CardData {
+            title: "YmYm Omuni",
+            text: 
+            "
+                DCモータで動く三輪オムニラジコン。
+                機体は3dプリンタパーツとテクセルで作成。
+            ",
+            image: "https://segfau-yama.github.io/segfau-portfolio/assets/ymym_omuni-0e4e8139.webp",
+        },
+        CardData {
+            title: "Motor Control Board",
+            text: 
+            "
+                4つのDCモーターを制御できるボード。
+                ESP32を利用しているためbluetoothコントローラと通信が可能。
+            ",
+            image: "https://segfau-yama.github.io/segfau-portfolio/assets/mcb-909c3c56.webp",
+        },
+        CardData {
+            title: "MagDet",
+            text: 
+            "
+                温泉旅館の空き情報をWeb上に表示するIoT機器
+                M5Stackで施錠検知を行っている
+            ",
+            image: "https://segfau-yama.github.io/segfau-portfolio/assets/magdet-e429c2f5.webp",
+        },
+        CardData {
+            title: "NPCB(National Power Calc Bot)",
+            text: 
+            "
+                架空国家での国力計算を自動化するbot。
+                ニコニコの音楽再生機能部分のコード分離予定。
+            ",
+            image: "https://segfau-yama.github.io/segfau-portfolio/assets/npcb-4cf22eca.webp",
+        },
+        CardData {
+            title: "NW Osero",
+            text: 
+            "
+                同時に複数人対戦可能な通信型オセロゲーム。
+                LAN内での対戦のみ対応。
+            ",
+            image: "data:image/webp;base64,UklGRn4AAABXRUJQVlA4THEAAAAvf8JPAA8woBHzHwa2kSQ1wsMkBEIlZUwNptYvNqL/itw2UjKnWWboE8gL0GJXBjQR7X/baWJsXQH85wFjfroj/Of+wF0p3NWGqVKYqg2VpVDZH93rjhNy+svW37rv7xyC/1wQutcd9ysJ/Edca92RAAA=",
+        },
+    ]);
+    rsx! {
+        div { class: "mx-auto my-10 px-4",
+            h1 {
+                class: "text-center text-5xl font-bold mb-6",
+                "Work"
+            }
+            div {
+                class: "flex flex-wrap justify-center",
+                for card in cards.iter() {
+                    Card {
+                        title: card.title.clone(),
+                        text: card.text.clone(),
+                        width: "w-full md:w-1/2 lg:w-1/3".to_string(),
+                        image: card.image.clone(),
+                    }
+                }
+            }
+            
         }
     }
 }
