@@ -1,4 +1,4 @@
-use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax};
+use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax, Row, Col};
 use dioxus::prelude::*;
 
 /// The Home page component that will be rendered when the current route is `[Route::Home]`
@@ -6,6 +6,15 @@ use dioxus::prelude::*;
 pub fn Home() -> Element {
     rsx! {
         Parallax {}
+        ProfileView {}
+        HistoryView {}
+        WorkView {}
+    }
+}
+
+#[component]
+pub fn ProfileView() -> Element {
+    rsx! {
         div {
             class: "mx-auto my-10 px-4 justify-center",
 
@@ -44,78 +53,47 @@ pub fn Home() -> Element {
                 }
             }
         }
-        HistoryPage {}
-        WorkPage {}
     }
 }
 
 
 #[derive(PartialEq, Clone)]
-pub struct History {
+pub struct TimelineData {
     time: &'static str,
     text: &'static str,
     hide: Option<&'static str>,
 }
 
 #[component]
-pub fn HistoryPage() -> Element {
+pub fn HistoryView() -> Element {
     let histories = use_signal(|| vec![
-        History { time: "2002/3", text: "青森県にて生まれる", hide: Some("top") },
-        History { time: "2017/3", text: "仙台高等専門学校総合工学科Ⅰ類 入学", hide: None },
-        History { time: "2019/1", text: "Web×Iotハッカソンメイカーズチャレンジ 参加", hide: None },
-        History { time: "2019/12", text: "Thailand-Japan Student ICT Fair 参加", hide: None },
-        History { time: "2022/3", text: "仙台高等専門学校総合工学科Ⅰ類 卒業", hide: None },
-        History {
+        TimelineData { time: "2002/3", text: "青森県にて生まれる", hide: Some("top") },
+        TimelineData { time: "2017/3", text: "仙台高等専門学校総合工学科Ⅰ類 入学", hide: None },
+        TimelineData { time: "2019/1", text: "Web×Iotハッカソンメイカーズチャレンジ 参加", hide: None },
+        TimelineData { time: "2019/12", text: "Thailand-Japan Student ICT Fair 参加", hide: None },
+        TimelineData { time: "2022/3", text: "仙台高等専門学校総合工学科Ⅰ類 卒業", hide: None },
+        TimelineData {
             time: "2022/4",
             text: "仙台高等専門学校総合工学科専攻科\n情報電子システム工学専攻 入学",
             hide: None,
         },
-        History { time: "2022/7", text: "基本情報技術者 取得", hide: None },
-        History { time: "2022/8", text: "第二種電気工事士 取得", hide: None },
-        History { time: "2023/8", text: "日本高専学会学生優秀発表賞 受賞", hide: None },
-        History { time: "2024/4", text: "製造業系の地元企業に就職", hide: None },
-        History { time: "2026/1", text: "製造業系の地元企業を退職", hide: None },
-        History { time: "2026/1", text: "SES系の企業に就職", hide: Some("bottom") },
+        TimelineData { time: "2022/7", text: "基本情報技術者 取得", hide: None },
+        TimelineData { time: "2022/8", text: "第二種電気工事士 取得", hide: None },
+        TimelineData { time: "2023/8", text: "日本高専学会学生優秀発表賞 受賞", hide: None },
+        TimelineData { time: "2024/4", text: "製造業系の地元企業に就職", hide: None },
+        TimelineData { time: "2026/1", text: "製造業系の地元企業を退職", hide: None },
+        TimelineData { time: "2026/1", text: "SES系の企業に就職", hide: Some("bottom") },
     ]);
 
     rsx! {
         div { class: "container md:mx-auto my-10 justify-center px-4",
             h1 { class: "text-center text-5xl font-bold mb-10", "History" }
-
-            // gap を親で作ると“隙間”に線が出ないので、item 側の py で間隔を作る
-            div { class: "grid grid-cols-3",
-
-                // Signal<Vec<T>> は docs の通り .iter() で回せる
+            Timeline {
                 for history in histories.iter() {
-                    // key は安定したユニーク値を推奨（例では time を使用）
-                    div { class: "grid grid-rows-subgrid grid-cols-[3fr_1fr_3fr] col-span-3",
-
-                        // time
-                        div { class: " font-semibold text-2xl text-gray-700 flex items-center justify-end col-start-1",
-                            {history.time.clone()}
-                        }
-
-                        // divider: 上線 / dot / 下線（Vuetify の VTimelineDivider 的）
-                        div { class: "flex flex-col items-center col-start-2 h-24",
-                            div {
-                                class: format!("border-3 flex-auto border-gray-300 {}", if history.hide == Some("top") { "invisible" } else { "" })
-                            }
-                            div { class: "w-8 h-8 border-4 border-gray-300 rounded-full bg-emerald-500" }
-                            div {
-                                class: format!("border-3 flex-auto border-gray-300 {}", if history.hide == Some("bottom") { "invisible" } else { "" })
-                            }
-                        }
-
-                        // content
-                        div { class: "text-left sm:text-lg text-md flex flex-col items-start justify-center col-start-3",
-                            {
-                                history.text.clone()
-                                    .split('\n')
-                                    .map(|line| rsx! {
-                                        span { "{line}" br {} }
-                                    })
-                            }
-                        }
+                    TimelineItem {
+                        time: history.time.to_string(),
+                        history: history.text.to_string(),
+                        hide: history.hide.map(|s| s.to_string()),
                     }
                 }
             }
@@ -131,7 +109,7 @@ pub struct CardData {
 }
 
 #[component]
-pub fn WorkPage() -> Element {
+pub fn WorkView() -> Element {
     let cards = use_signal(|| vec![
         CardData {
             title: "im920s_arduino",
@@ -194,18 +172,22 @@ pub fn WorkPage() -> Element {
                 class: "text-center text-5xl font-bold mb-6",
                 "Work"
             }
-            div {
-                class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center",
+            Row {
+                gap: "4",
+                class: "justify-center",
                 for card in cards.iter() {
-                    Card {
-                        title: card.title.clone(),
-                        text: card.text.clone(),
-                        width: "w-full".to_string(),
-                        image: card.image.clone(),
+                    Col {
+                        cols: 12,
+                        class: "col-span-12 md:col-span-6 lg:col-span-4",
+                        Card {
+                            title: card.title.clone(),
+                            text: card.text.clone(),
+                            width: "w-full".to_string(),
+                            image: card.image.clone(),
+                        }
                     }
                 }
             }
-            
         }
     }
 }

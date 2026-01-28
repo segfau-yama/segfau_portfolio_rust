@@ -2,7 +2,7 @@ use dioxus::prelude::*;
 
 #[derive(PartialEq, Clone, Props)]
 pub struct ThemeProviderProps {
-    theme: String,
+    theme: ReadSignal<String>,
 }
 
 #[component]

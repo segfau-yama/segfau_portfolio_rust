@@ -1,5 +1,6 @@
 mod card;
 pub use card::Card;
+pub use card::CardProps;
 
 mod header;
 pub use header::Header;
@@ -19,3 +20,7 @@ pub use timeline::TimelineItem;
 
 mod parallax;
 pub use parallax::Parallax;
+
+mod grid;
+pub use grid::Row;
+pub use grid::Col;

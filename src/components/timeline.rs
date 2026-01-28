@@ -1,45 +1,64 @@
 use dioxus::prelude::*;
+use crate::components::grid::{Row, Col};
 
+#[derive(PartialEq, Clone, Props)]
+pub struct TimelineProps {
+    children: Element,
+}
 
 #[component]
-pub fn Timeline(children: Element) -> Element {
+pub fn Timeline(props: TimelineProps) -> Element {
     rsx! {
-
-        div { class: "w-[32rem]",
-            ul { class: "flex flex-col space-y-6",
-                {children}
-            }
+        Row {
+            gap: "0",
+            class: "justify-center",
+            {props.children}
         }
     }
 }
 
 #[derive(PartialEq, Clone, Props)]
 pub struct TimelineItemProps {
-    title: String,
-    content: String,
+    time: String,
+    history: String,
+    hide: Option<String>,
 }
 
 
 #[component]
 pub fn TimelineItem(props: TimelineItemProps) -> Element {
     rsx! {
-        li { class: "relative flex flex-col gap-2",
-            span { class: "absolute left-0 grid justify-center transition-opacity duration-200 bg-transparent",
-                span { class: "h-full w-0.5 bg-blue-gray-100" }
+        Col {
+            cols: 5,
+            class: "col-start-1 col-end-6",
+            div { 
+                class: "h-24 font-semibold text-2xl text-gray-700 flex items-center justify-end",
+                {props.time}
             }
-            div { class: "flex items-center h-3 gap-4",
-                span { class: "relative z-[2] w-max flex-shrink-0 overflow-hidden rounded-full bg-gray-900 p-1.5 text-white" }
-                h6 { class: "block font-sans text-base antialiased font-semibold leading-none tracking-normal text-blue-gray-900",
-                    {props.title}
-                }
-            }
-            div { class: "flex gap-8 pb-8",
-                span { class: "flex-shrink-0 invisible h-full pointer-events-none" }
+        }
+        Col {
+            cols: 2,
+            class: "col-start-6 col-end-8",
+            div { 
+                class: "flex flex-col items-center h-full",
                 div {
-                    p { class: "block font-sans text-sm antialiased font-normal leading-normal text-gray-600",
-                        {props.content}
-                    }
+                    class: format!("border-3 flex-auto border-gray-300 {}", if props.hide == Some("top".to_string()) { "invisible" } else { "" })
                 }
+                div { 
+                    class: "w-8 h-8 border-4 border-gray-300 rounded-full bg-emerald-500" }
+                div {
+                    class: format!("border-3 flex-auto border-gray-300 {}", if props.hide == Some("bottom".to_string()) { "invisible" } else { "" })
+                }
+            }
+        }
+        Col {
+            cols: 5,
+            class: "col-start-8 col-end-12",
+            div { class: "h-full text-left sm:text-lg text-md flex flex-col items-start justify-center",
+                { props.history.split('\n')
+                    .map(|line| rsx! {
+                        span { "{line}" br {} }
+                    }) }
             }
         }
     }
