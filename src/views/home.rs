@@ -1,4 +1,4 @@
-use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax, Row, Col};
+use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax, Row, Col, ScrollAnchor};
 use dioxus::prelude::*;
 
 /// The Home page component that will be rendered when the current route is `[Route::Home]`
@@ -15,40 +15,42 @@ pub fn Home() -> Element {
 #[component]
 pub fn ProfileView() -> Element {
     rsx! {
-        div {
-            class: "mx-auto my-10 px-4 justify-center",
-
-            h1 {
-                class: "text-center text-5xl font-bold mb-6",
-                "Profile"
-            }
+        ScrollAnchor { id: "profile".to_string(),
             div {
-                class: "flex flex-wrap gap-6 justify-center",
-                div {
-                    class: "
-                        flex
-                        items-center
-                        justify-center
-                    ",
-                    Avatar { image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp", rounded: "full", size: "50px" }
+                class: "mx-auto my-10 px-4 justify-center",
+
+                h1 {
+                    class: "text-center text-5xl font-bold mb-6",
+                    "Profile"
                 }
                 div {
-                    class: "
-                        flex
-                        items-center
-                        justify-center
-                    ",
+                    class: "flex flex-wrap gap-6 justify-center",
                     div {
-                        class: "text-left text-xl leading-relaxed space-y-1",
-                        "青森県青森市生まれ宮城県仙台市育ちのポンコツです．"
-                        br {}
-                        "広く浅くをモットーにして生きているため全てが中途半端"
-                        br {}
-                        "プログラミング：Python, JavaScript, C, C++"
-                        br {}
-                        "回路設計：KiCad"
-                        br {}
-                        "機械設計：SolidWorks, Fusion360"
+                        class: "
+                            flex
+                            items-center
+                            justify-center
+                        ",
+                        Avatar { image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp", rounded: "full", size: "50px" }
+                    }
+                    div {
+                        class: "
+                            flex
+                            items-center
+                            justify-center
+                        ",
+                        div {
+                            class: "text-left text-xl leading-relaxed space-y-1",
+                            "青森県青森市生まれ宮城県仙台市育ちのポンコツです．"
+                            br {}
+                            "広く浅くをモットーにして生きているため全てが中途半端"
+                            br {}
+                            "プログラミング：Python, JavaScript, C, C++"
+                            br {}
+                            "回路設計：KiCad"
+                            br {}
+                            "機械設計：SolidWorks, Fusion360"
+                        }
                     }
                 }
             }
@@ -86,14 +88,16 @@ pub fn HistoryView() -> Element {
     ]);
 
     rsx! {
-        div { class: "container md:mx-auto my-10 justify-center px-4",
-            h1 { class: "text-center text-5xl font-bold mb-10", "History" }
-            Timeline {
-                for history in histories.iter() {
-                    TimelineItem {
-                        time: history.time.to_string(),
-                        history: history.text.to_string(),
-                        hide: history.hide.map(|s| s.to_string()),
+        ScrollAnchor { id: "history".to_string(),
+            div { class: "container md:mx-auto my-10 justify-center px-4",
+                h1 { class: "text-center text-5xl font-bold mb-10", "History" }
+                Timeline {
+                    for history in histories.iter() {
+                        TimelineItem {
+                            time: history.time.to_string(),
+                            history: history.text.to_string(),
+                            hide: history.hide.map(|s| s.to_string()),
+                        }
                     }
                 }
             }
@@ -167,23 +171,25 @@ pub fn WorkView() -> Element {
         },
     ]);
     rsx! {
-        div { class: "mx-auto my-10 px-4",
-            h1 {
-                class: "text-center text-5xl font-bold mb-6",
-                "Work"
-            }
-            Row {
-                gap: "4",
-                class: "justify-center",
-                for card in cards.iter() {
-                    Col {
-                        cols: 12,
-                        class: "col-span-12 md:col-span-6 lg:col-span-4",
-                        Card {
-                            title: card.title.clone(),
-                            text: card.text.clone(),
-                            width: "w-full".to_string(),
-                            image: card.image.clone(),
+        ScrollAnchor { id: "work".to_string(),
+            div { class: "mx-auto my-10 px-4",
+                h1 {
+                    class: "text-center text-5xl font-bold mb-6",
+                    "Work"
+                }
+                Row {
+                    gap: "4",
+                    class: "justify-center",
+                    for card in cards.iter() {
+                        Col {
+                            cols: 12,
+                            class: "col-span-12 md:col-span-6 lg:col-span-4",
+                            Card {
+                                title: card.title.clone(),
+                                text: card.text.clone(),
+                                width: "w-full".to_string(),
+                                image: card.image.clone(),
+                            }
                         }
                     }
                 }
