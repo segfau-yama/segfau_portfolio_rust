@@ -59,4 +59,3 @@ pub fn HeaderItem(props: HeaderItemProps) -> Element {
         }
     }
 }
-

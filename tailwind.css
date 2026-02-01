@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #10b981;
+    --secondary: #0ea5e9;
+    --background: #f8fafc;
+    --text: #0f172a;
+  }
+
+  [data-theme="dark"] {
+    --primary: #22c55e;
+    --secondary: #38bdf8;
+    --background: #0f172a;
+    --text: #e2e8f0;
+  }
+}
+
+@layer utilities {
+  .bg-primary {
+    background-color: var(--primary);
+  }
+
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .bg-theme {
+    background-color: var(--background);
+  }
+
+  .text-theme {
+    color: var(--text);
+  }
+}
