@@ -31,20 +31,20 @@ pub fn TimelineItem(props: TimelineItemProps) -> Element {
         Col {
             cols: 5,
             class: "col-start-1 col-end-6",
-            div { 
-                class: "h-24 font-semibold text-2xl text-gray-700 flex items-center justify-end",
+            div {
+                class: "h-16 font-semibold text-2xl text-gray-700 flex items-center justify-end",
                 {props.time}
             }
         }
         Col {
             cols: 2,
             class: "col-start-6 col-end-8",
-            div { 
+            div {
                 class: "flex flex-col items-center h-full",
                 div {
                     class: format!("border-3 flex-auto border-gray-300 {}", if props.hide == Some("top".to_string()) { "invisible" } else { "" })
                 }
-                div { 
+                div {
                     class: "w-8 h-8 border-4 border-gray-300 rounded-full bg-emerald-500" }
                 div {
                     class: format!("border-3 flex-auto border-gray-300 {}", if props.hide == Some("bottom".to_string()) { "invisible" } else { "" })
@@ -63,4 +63,3 @@ pub fn TimelineItem(props: TimelineItemProps) -> Element {
         }
     }
 }
-

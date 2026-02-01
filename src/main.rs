@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 
 use views::{Blog, Home};
-use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer};
+use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink};
 mod components;
 mod views;
 
@@ -11,8 +11,8 @@ enum Route {
     #[layout(Wrapper)]
         #[route("/")]
         Home {},
-        #[route("/blog/:id")]
-        Blog { id: i32 },
+        #[route("/blog/")]
+        Blog {},
 }
 
 enum Color {
@@ -48,32 +48,34 @@ fn App() -> Element {
 #[derive(PartialEq, Clone)]
 struct HeaderLink {
     name: String,
-    route: Route,
+    anchor: String,
 }
 
 #[component]
 pub fn Wrapper() -> Element {
+    let _scroll = ScrollHandle::init();
     let mut links = use_signal(|| vec![
-        HeaderLink { name: "Home".to_string(), route: Route::Home {} },
-        HeaderLink { name: "Blog".to_string(), route: Route::Blog { id: 1 } },
-        HeaderLink { name: "Another Blog".to_string(), route: Route::Blog { id: 2 } },
+        HeaderLink { name: "Home".to_string(), anchor: "home".to_string() },
+        HeaderLink { name: "Profile".to_string(), anchor: "profile".to_string() },
+        HeaderLink { name: "History".to_string(), anchor: "history".to_string() },
+        HeaderLink { name: "Work".to_string(), anchor: "work".to_string() },
     ]);
 
     rsx! {
         div { class: "bg-gray-100",
-            Header { color: "bg-emerald-500", size: "py-2 lg:py-3", 
+            Header { color: "bg-emerald-500", size: "py-2 lg:py-3",
                 HeaderTitle {
                     Link {
                         to: Route::Home {},
                         "Segfau-Lab"
-                    }                
+                    }
                 }
                 HeaderItemWrapper {
                     for link in links.read().iter() {
                         HeaderItem {
-                            Link {
-                                to: link.route.clone(),
-                                "{link.name}"
+                            ScrollLink {
+                                to: link.anchor.clone(),
+                                name: link.name.clone(),
                             }
                         }
                     }

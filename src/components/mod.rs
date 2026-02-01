@@ -24,3 +24,8 @@ pub use parallax::Parallax;
 mod grid;
 pub use grid::Row;
 pub use grid::Col;
+
+mod scroll;
+pub use scroll::ScrollHandle;
+pub use scroll::ScrollLink;
+pub use scroll::ScrollAnchor;

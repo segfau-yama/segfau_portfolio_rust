@@ -1,14 +1,26 @@
-use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax, Row, Col};
+use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax, Row, Col, ScrollAnchor};
 use dioxus::prelude::*;
 
 /// The Home page component that will be rendered when the current route is `[Route::Home]`
 #[component]
 pub fn Home() -> Element {
     rsx! {
-        Parallax {}
-        ProfileView {}
-        HistoryView {}
-        WorkView {}
+        ScrollAnchor {
+            id: "home".to_string(),
+            Parallax {img: "https://segfau-yama.github.io/segfau-portfolio/assets/top_image-212d7568.webp"}
+        }
+        ScrollAnchor {
+            id: "profile".to_string(),
+            ProfileView {}
+        }
+        ScrollAnchor {
+            id: "history".to_string(),
+            HistoryView {}
+        }
+        ScrollAnchor {
+            id: "work".to_string(),
+            WorkView {}
+        }
     }
 }
 
@@ -16,7 +28,7 @@ pub fn Home() -> Element {
 pub fn ProfileView() -> Element {
     rsx! {
         div {
-            class: "mx-auto my-10 px-4 justify-center",
+            class: "mx-auto pt-16 px-4 justify-center",
 
             h1 {
                 class: "text-center text-5xl font-bold mb-6",
@@ -86,7 +98,7 @@ pub fn HistoryView() -> Element {
     ]);
 
     rsx! {
-        div { class: "container md:mx-auto my-10 justify-center px-4",
+        div { class: "container md:mx-auto justify-center pt-16 px-4",
             h1 { class: "text-center text-5xl font-bold mb-10", "History" }
             Timeline {
                 for history in histories.iter() {
@@ -113,7 +125,7 @@ pub fn WorkView() -> Element {
     let cards = use_signal(|| vec![
         CardData {
             title: "im920s_arduino",
-            text: 
+            text:
             "
                 Arduino UNOとIM920sでシリアル通信を行うスケッチ。
                 PS3コントローラとの接続、シリアルモニタからのコマンド打ち込みが可能。
@@ -122,7 +134,7 @@ pub fn WorkView() -> Element {
         },
         CardData {
             title: "YmYm Omuni",
-            text: 
+            text:
             "
                 DCモータで動く三輪オムニラジコン。
                 機体は3dプリンタパーツとテクセルで作成。
@@ -131,7 +143,7 @@ pub fn WorkView() -> Element {
         },
         CardData {
             title: "Motor Control Board",
-            text: 
+            text:
             "
                 4つのDCモーターを制御できるボード。
                 ESP32を利用しているためbluetoothコントローラと通信が可能。
@@ -140,7 +152,7 @@ pub fn WorkView() -> Element {
         },
         CardData {
             title: "MagDet",
-            text: 
+            text:
             "
                 温泉旅館の空き情報をWeb上に表示するIoT機器
                 M5Stackで施錠検知を行っている
@@ -149,7 +161,7 @@ pub fn WorkView() -> Element {
         },
         CardData {
             title: "NPCB(National Power Calc Bot)",
-            text: 
+            text:
             "
                 架空国家での国力計算を自動化するbot。
                 ニコニコの音楽再生機能部分のコード分離予定。
@@ -158,7 +170,7 @@ pub fn WorkView() -> Element {
         },
         CardData {
             title: "NW Osero",
-            text: 
+            text:
             "
                 同時に複数人対戦可能な通信型オセロゲーム。
                 LAN内での対戦のみ対応。
@@ -167,7 +179,7 @@ pub fn WorkView() -> Element {
         },
     ]);
     rsx! {
-        div { class: "mx-auto my-10 px-4",
+        div { class: "mx-auto pt-16 px-4",
             h1 {
                 class: "text-center text-5xl font-bold mb-6",
                 "Work"
