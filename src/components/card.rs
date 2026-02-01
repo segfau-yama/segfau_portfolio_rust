@@ -11,8 +11,8 @@ pub struct CardProps {
 #[component]
 pub fn Card(props: CardProps) -> Element {
     rsx! {
-        div { class: "relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg h-96 md:h-80 lg:h-64",
-            div { class: "relative overflow-hidden text-white flex-auto",
+        div { class: "relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg",
+            div { class: "relative overflow-hidden text-white flex-auto md:h-64 lg:h-48",
                 img {
                     alt: "card-image",
                     src: {props.image},

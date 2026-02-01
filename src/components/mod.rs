@@ -29,3 +29,6 @@ mod scroll;
 pub use scroll::ScrollHandle;
 pub use scroll::ScrollLink;
 pub use scroll::ScrollAnchor;
+
+mod typography;
+pub use typography::Typography;

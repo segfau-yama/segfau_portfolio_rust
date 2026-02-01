@@ -1,9 +1,10 @@
 use dioxus::prelude::*;
 
-use views::{Blog, Home};
+use pages::{Home, Blog};
 use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink};
 mod components;
 mod views;
+mod pages;
 
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]

@@ -54,11 +54,8 @@ pub fn TimelineItem(props: TimelineItemProps) -> Element {
         Col {
             cols: 5,
             class: "col-start-8 col-end-12",
-            div { class: "h-full text-left sm:text-lg text-md flex flex-col items-start justify-center",
-                { props.history.split('\n')
-                    .map(|line| rsx! {
-                        span { "{line}" br {} }
-                    }) }
+            div { class: "h-full text-left sm:text-lg text-md flex flex-col items-start justify-center whitespace-pre-line",
+                { props.history }
             }
         }
     }
