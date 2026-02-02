@@ -10,8 +10,8 @@ pub struct TimelineProps {
 pub fn Timeline(props: TimelineProps) -> Element {
     rsx! {
         Row {
+            cols: "[2fr_1fr_2fr]",
             gap: "0",
-            class: "justify-center",
             {props.children}
         }
     }
@@ -19,6 +19,7 @@ pub fn Timeline(props: TimelineProps) -> Element {
 
 #[derive(PartialEq, Clone, Props)]
 pub struct TimelineItemProps {
+    size: String,
     time: String,
     history: String,
     hide: Option<String>,
@@ -29,18 +30,14 @@ pub struct TimelineItemProps {
 pub fn TimelineItem(props: TimelineItemProps) -> Element {
     rsx! {
         Col {
-            cols: 5,
-            class: "col-start-1 col-end-6",
             div {
-                class: "h-16 font-semibold text-2xl text-gray-700 flex items-center justify-end",
+                class: "h-{props.size} font-semibold text-2xl text-gray-700 flex items-center justify-end",
                 {props.time}
             }
         }
         Col {
-            cols: 2,
-            class: "col-start-6 col-end-8",
             div {
-                class: "flex flex-col items-center h-full",
+                class: "h-full flex flex-col items-center justify-center",
                 div {
                     class: format!("border-3 flex-auto border-gray-300 {}", if props.hide == Some("top".to_string()) { "invisible" } else { "" })
                 }
@@ -52,9 +49,7 @@ pub fn TimelineItem(props: TimelineItemProps) -> Element {
             }
         }
         Col {
-            cols: 5,
-            class: "col-start-8 col-end-12",
-            div { class: "h-full text-left sm:text-lg text-md flex flex-col items-start justify-center whitespace-pre-line",
+            div { class: "h-full text-sm sm:text-md md:text-lg whitespace-pre-line flex items-center justify-start",
                 { props.history }
             }
         }

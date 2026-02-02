@@ -76,12 +76,11 @@ pub fn WorkView() -> Element {
                 class: "font-bold mb-6".to_string(),
             }
             Row {
+                cols: "1",
                 gap: "4",
-                class: "justify-center",
+                class: "justify-center md:grid-cols-2 lg:grid-cols-3",
                 for card in cards.iter() {
                     Col {
-                        cols: 12,
-                        class: "col-span-12 md:col-span-6 lg:col-span-4",
                         Card {
                             color: "white".to_string(),
                             shadow: "sm".to_string(),
@@ -100,7 +99,7 @@ pub fn WorkView() -> Element {
                                     size: "xl".to_string(),
                                     color: "slate-800".to_string(),
                                     position: "right".to_string(),
-                                    class: "mb-2 font-semibold".to_string(),
+                                    class: "my-2 font-semibold".to_string(),
                                 }
                                 Typography {
                                     text: {card.text},

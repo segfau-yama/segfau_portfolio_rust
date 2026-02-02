@@ -30,17 +30,18 @@ pub fn HistoryView() -> Element {
     ]);
 
     rsx! {
-        div { class: "md:mx-auto justify-center pt-20 px-4",
+        div { class: "mx-auto pt-20 px-4",
             Typography {
                 text: "History",
                 size: "5xl".to_string(),
                 color: "black".to_string(),
                 position: "center".to_string(),
-                class: Some("font-bold mb-10".to_string()),
+                class: "font-bold mb-6".to_string(),
             }
             Timeline {
                 for history in histories.iter() {
                     TimelineItem {
+                        size: "24",
                         time: history.time.to_string(),
                         history: history.text.to_string(),
                         hide: history.hide.map(|s| s.to_string()),
