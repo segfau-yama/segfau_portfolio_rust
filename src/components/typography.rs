@@ -14,8 +14,8 @@ pub struct TypographyProps {
 pub fn Typography(props: TypographyProps) -> Element {
     rsx! {
         div {
-            class: "text-{props.size} text-{props.color} text-{props.position} {props.class}",
-            "{props.text}"
+            class: "{props.size} {props.color} {props.position} {props.class}",
+            {props.text}
         }
     }
 }

@@ -12,7 +12,7 @@ pub struct CardProps {
 #[component]
 pub fn Card(props: CardProps) -> Element {
     rsx! {
-        div { class: "relative flex flex-col bg-{props.color} shadow-{props.shadow} rounded-{props.rounded} border border-slate-200 {props.class:?}",
+        div { class: "relative flex flex-col {props.color} {props.shadow} {props.rounded} border border-slate-200 {props.class:?}",
             {props.children}
         }
     }

@@ -58,6 +58,7 @@ pub fn Wrapper() -> Element {
     let mut links = use_signal(|| vec![
         HeaderLink { name: "Home".to_string(), anchor: "home".to_string() },
         HeaderLink { name: "Profile".to_string(), anchor: "profile".to_string() },
+        HeaderLink { name: "Skill".to_string(), anchor: "skill".to_string() },
         HeaderLink { name: "History".to_string(), anchor: "history".to_string() },
         HeaderLink { name: "Work".to_string(), anchor: "work".to_string() },
     ]);

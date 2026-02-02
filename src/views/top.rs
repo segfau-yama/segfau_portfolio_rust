@@ -6,19 +6,19 @@ pub fn TopView() -> Element {
     rsx! {
         Parallax {
             img: "url(https://segfau-yama.github.io/segfau-portfolio/assets/top_image-212d7568.webp)", 
-            height: "py-96".to_string(),
+            height: "py-96",
             Typography {
                 text: "Segfau-Lab",
-                size: "5xl".to_string(),
-                color: "white".to_string(),
-                position: "center".to_string(),
-                class: "my-5".to_string(),
+                size: "text-5xl",
+                color: "text-white",
+                position: "text-center",
+                class: "my-5",
             }
             Typography {
                 text: "やまやまのホームページ",
-                size: "xl".to_string(),
-                color: "white".to_string(),
-                position: "center".to_string(),
+                size: "text-xl",
+                color: "text-white",
+                position: "text-center",
             }
         }
     }

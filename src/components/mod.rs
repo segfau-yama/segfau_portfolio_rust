@@ -35,3 +35,8 @@ pub use scroll::ScrollAnchor;
 
 mod typography;
 pub use typography::Typography;
+
+mod progress_bar;
+pub use progress_bar::ProgressBar;
+pub use progress_bar::ProgressBarContent;
+pub use progress_bar::ProgressBarPercentage;

@@ -7,11 +7,11 @@ pub fn ProfileView() -> Element {
         div {
             class: "mx-auto pt-20 px-4 justify-center",
             Typography {
-                text: "Profile".to_string(),
-                size: "5xl".to_string(),
-                color: "black".to_string(),
-                position: "center".to_string(),
-                class: "font-bold mb-6".to_string(),
+                text: "Profile",
+                size: "text-5xl",
+                color: "text-black",
+                position: "text-center",
+                class: "font-bold mb-6",
             }
             div {
                 class: "flex flex-wrap gap-6 justify-center",
@@ -21,7 +21,12 @@ pub fn ProfileView() -> Element {
                         items-center
                         justify-center
                     ",
-                    Avatar { image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp", rounded: "full", size: "50px" }
+                    Avatar { 
+                        image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp", 
+                        rounded: "rounded-full", 
+                        size: "size-[300px]",
+                        class: "shadow shadow-sm border-1 border-slate-200",
+                    }
                 }
                 div {
                     class: "
@@ -35,10 +40,10 @@ pub fn ProfileView() -> Element {
                         プログラミング：Python, JavaScript, C, C++
                         回路設計：KiCad
                         機械設計：SolidWorks, Fusion360, FreeCAD",
-                        size: "xl".to_string(),
-                        color: "black".to_string(),
-                        position: "left".to_string(),
-                        class: "whitespace-pre-line leading-relaxed space-y-1".to_string(),
+                        size: "text-xl",
+                        color: "black",
+                        position: "left",
+                        class: "whitespace-pre-line leading-relaxed space-y-1",
                     }
                 }
             }

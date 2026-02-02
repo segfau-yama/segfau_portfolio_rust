@@ -1,5 +1,5 @@
 use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax, Row, Col, ScrollAnchor, Typography};
-use crate::views::{TopView, ProfileView, HistoryView, WorkView};
+use crate::views::{TopView, ProfileView, SkillView, HistoryView, WorkView};
 use dioxus::prelude::*;
 
 
@@ -13,6 +13,10 @@ pub fn Home() -> Element {
         ScrollAnchor {
             id: "profile".to_string(),
             ProfileView {}
+        }
+        ScrollAnchor {
+            id: "skill".to_string(),
+            SkillView {}
         }
         ScrollAnchor {
             id: "history".to_string(),

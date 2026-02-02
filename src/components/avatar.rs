@@ -5,15 +5,17 @@ pub struct AvatarProps {
     image: String,
     size: String,
     rounded: String,
+    #[props(default="".to_string())]
+    class: String,
 }
 
 #[component]
 pub fn Avatar(props: AvatarProps) -> Element {
     rsx! {
-        div { class: "flex items-center justify-center gap-4",
+        div { class: "flex items-center justify-center",
             img {
                 alt: "avatar",
-                class: "rounded-{props.rounded} size-[{props.size}]",
+                class: "{props.rounded} {props.size} {props.class}",
                 src: props.image,
             }
         }

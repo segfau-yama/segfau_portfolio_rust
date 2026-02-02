@@ -8,6 +8,7 @@ edition = "2021"
 
 [dependencies]
 dioxus = { version = "0.7.1", features = ["router", "fullstack"] }
+dioxus-free-icons = { version = "0.10", features = ["bootstrap", "font-awesome-brands", "font-awesome-solid"] }
 
 [features]
 default = ["web"]

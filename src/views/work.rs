@@ -70,21 +70,21 @@ pub fn WorkView() -> Element {
         div { class: "mx-auto pt-20 px-4",
             Typography {
                 text: "Work",
-                size: "5xl".to_string(),
-                color: "black".to_string(),
-                position: "center".to_string(),
-                class: "font-bold mb-6".to_string(),
+                size: "text-5xl",
+                color: "text-black",
+                position: "text-center",
+                class: "font-bold mb-6",
             }
             Row {
-                cols: "1",
-                gap: "4",
+                cols: "grid-cols-1",
+                gap: "gap-4",
                 class: "justify-center md:grid-cols-2 lg:grid-cols-3",
                 for card in cards.iter() {
                     Col {
                         Card {
-                            color: "white".to_string(),
-                            shadow: "sm".to_string(),
-                            rounded: "lg".to_string(),
+                            color: "white",
+                            shadow: "shadow-sm",
+                            rounded: "rounded-lg",
                             CardHeader {
                                 color: "white",
                                 size: "64",
@@ -96,17 +96,17 @@ pub fn WorkView() -> Element {
                             CardBody {
                                 Typography {
                                     text: {card.title},
-                                    size: "xl".to_string(),
-                                    color: "slate-800".to_string(),
-                                    position: "right".to_string(),
-                                    class: "my-2 font-semibold".to_string(),
+                                    size: "text-xl",
+                                    color: "text-slate-800",
+                                    position: "text-left",
+                                    class: "my-2 font-semibold",
                                 }
                                 Typography {
                                     text: {card.text},
-                                    size: "base".to_string(),
-                                    color: "slate-600".to_string(),
-                                    position: "right".to_string(),
-                                    class: "leading-normal".to_string(),
+                                    size: "text-base",
+                                    color: "text-slate-600",
+                                    position: "text-left",
+                                    class: "leading-normal",
                                 }
                             }
                         }

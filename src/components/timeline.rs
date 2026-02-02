@@ -10,8 +10,8 @@ pub struct TimelineProps {
 pub fn Timeline(props: TimelineProps) -> Element {
     rsx! {
         Row {
-            cols: "[2fr_1fr_2fr]",
-            gap: "0",
+            cols: "grid-cols-[4fr_1fr_4fr]",
+            gap: "gap-0",
             {props.children}
         }
     }
@@ -31,7 +31,7 @@ pub fn TimelineItem(props: TimelineItemProps) -> Element {
     rsx! {
         Col {
             div {
-                class: "h-{props.size} font-semibold text-2xl text-gray-700 flex items-center justify-end",
+                class: "{props.size} font-semibold text-2xl text-gray-700 flex items-center justify-end",
                 {props.time}
             }
         }
