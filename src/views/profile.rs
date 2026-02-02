@@ -11,7 +11,7 @@ pub fn ProfileView() -> Element {
                 size: "5xl".to_string(),
                 color: "black".to_string(),
                 position: "center".to_string(),
-                class: Some("font-bold mb-6".to_string()),
+                class: "font-bold mb-6".to_string(),
             }
             div {
                 class: "flex flex-wrap gap-6 justify-center",
@@ -30,17 +30,15 @@ pub fn ProfileView() -> Element {
                         justify-center
                     ",
                     Typography {
-                        text: 
-                        "青森県青森市生まれ宮城県仙台市育ちのポンコツです．
+                        text: "青森県青森市生まれ宮城県仙台市育ちのポンコツです．
                         広く浅くをモットーにして生きているため全てが中途半端
                         プログラミング：Python, JavaScript, C, C++
                         回路設計：KiCad
-                        機械設計：SolidWorks, Fusion360, FreeCAD
-                        ".to_string(),
+                        機械設計：SolidWorks, Fusion360, FreeCAD".to_string(),
                         size: "xl".to_string(),
                         color: "black".to_string(),
                         position: "left".to_string(),
-                        class: Some("whitespace-pre-line leading-relaxed space-y-1".to_string()),
+                        class: "whitespace-pre-line leading-relaxed space-y-1".to_string(),
                     }
                 }
             }

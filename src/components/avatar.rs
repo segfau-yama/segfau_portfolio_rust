@@ -10,10 +10,10 @@ pub struct AvatarProps {
 #[component]
 pub fn Avatar(props: AvatarProps) -> Element {
     rsx! {
-        div { class: "flex items-center gap-4",
+        div { class: "flex items-center justify-center gap-4",
             img {
                 alt: "avatar",
-                class: "inline-block relative object-cover object-center rounded-{props.rounded} size-[{props.size}]",
+                class: "rounded-{props.rounded} size-[{props.size}]",
                 src: props.image,
             }
         }

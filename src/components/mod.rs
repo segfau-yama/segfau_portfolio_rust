@@ -1,6 +1,9 @@
 mod card;
 pub use card::Card;
 pub use card::CardProps;
+pub use card::CardHeader;
+pub use card::CardBody;
+pub use card::CardFooter;
 
 mod header;
 pub use header::Header;

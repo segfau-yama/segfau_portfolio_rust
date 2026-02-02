@@ -1,3 +1,6 @@
+mod top;
+pub use top::TopView;
+
 mod profile;
 pub use profile::ProfileView;
 

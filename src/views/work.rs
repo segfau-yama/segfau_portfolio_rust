@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use crate::components::{Card, Col, Row, Typography};
+use crate::components::{Card, CardHeader, CardBody, CardFooter, Col, Row, Typography};
 
 #[derive(PartialEq, Clone)]
 pub struct CardData {
@@ -73,7 +73,7 @@ pub fn WorkView() -> Element {
                 size: "5xl".to_string(),
                 color: "black".to_string(),
                 position: "center".to_string(),
-                class: Some("font-bold mb-6".to_string()),
+                class: "font-bold mb-6".to_string(),
             }
             Row {
                 gap: "4",
@@ -83,10 +83,33 @@ pub fn WorkView() -> Element {
                         cols: 12,
                         class: "col-span-12 md:col-span-6 lg:col-span-4",
                         Card {
-                            title: card.title.clone(),
-                            text: card.text.clone(),
-                            width: "w-full".to_string(),
-                            image: card.image.clone(),
+                            color: "white".to_string(),
+                            shadow: "sm".to_string(),
+                            rounded: "lg".to_string(),
+                            CardHeader {
+                                color: "white",
+                                size: "64",
+                                img {
+                                    alt: "card-image",
+                                    src: {card.image},
+                                }
+                            }
+                            CardBody {
+                                Typography {
+                                    text: {card.title.to_string()},
+                                    size: "xl".to_string(),
+                                    color: "slate-800".to_string(),
+                                    position: "right".to_string(),
+                                    class: "mb-2 font-semibold".to_string(),
+                                }
+                                Typography {
+                                    text: {card.text.to_string()},
+                                    size: "base".to_string(),
+                                    color: "slate-600".to_string(),
+                                    position: "right".to_string(),
+                                    class: "leading-normal".to_string(),
+                                }
+                            }
                         }
                     }
                 }
