@@ -8,6 +8,7 @@ pub struct ProgressBarProps {
     children: Element,
 }
 
+// TODO: progress barのコンテンツを消去、ラベルとパーセンテージ表示は別コンポーネント化
 #[component]
 pub fn ProgressBar(props: ProgressBarProps) -> Element {
     rsx! {
