@@ -32,7 +32,7 @@ pub fn HistoryView() -> Element {
     rsx! {
         div { class: "md:mx-auto justify-center pt-20 px-4",
             Typography {
-                text: "History".to_string(),
+                text: "History",
                 size: "5xl".to_string(),
                 color: "black".to_string(),
                 position: "center".to_string(),

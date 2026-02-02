@@ -69,7 +69,7 @@ pub fn WorkView() -> Element {
     rsx! {
         div { class: "mx-auto pt-20 px-4",
             Typography {
-                text: "Work".to_string(),
+                text: "Work",
                 size: "5xl".to_string(),
                 color: "black".to_string(),
                 position: "center".to_string(),
@@ -96,14 +96,14 @@ pub fn WorkView() -> Element {
                             }
                             CardBody {
                                 Typography {
-                                    text: {card.title.to_string()},
+                                    text: {card.title},
                                     size: "xl".to_string(),
                                     color: "slate-800".to_string(),
                                     position: "right".to_string(),
                                     class: "mb-2 font-semibold".to_string(),
                                 }
                                 Typography {
-                                    text: {card.text.to_string()},
+                                    text: {card.text},
                                     size: "base".to_string(),
                                     color: "slate-600".to_string(),
                                     position: "right".to_string(),

@@ -34,7 +34,7 @@ pub fn ProfileView() -> Element {
                         広く浅くをモットーにして生きているため全てが中途半端
                         プログラミング：Python, JavaScript, C, C++
                         回路設計：KiCad
-                        機械設計：SolidWorks, Fusion360, FreeCAD".to_string(),
+                        機械設計：SolidWorks, Fusion360, FreeCAD",
                         size: "xl".to_string(),
                         color: "black".to_string(),
                         position: "left".to_string(),
