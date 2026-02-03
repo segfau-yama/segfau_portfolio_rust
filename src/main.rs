@@ -1,6 +1,7 @@
 use dioxus::prelude::*;
 use dioxus_free_icons::icons::bs_icons::{BsDiscord, BsTwitter, BsGithub, BsEnvelopeFill};
 use dioxus_free_icons::Icon;
+use dioxus_free_icons::IconShape;
 
 use pages::{Home, Blog};
 use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar};
@@ -56,7 +57,7 @@ struct HeaderLink {
 
 #[derive(PartialEq, Clone)]
 struct FooterLink<T> {
-    icon: T,
+    icon: Box<dyn IconShape>,
     to: String,
 }
 
@@ -72,10 +73,10 @@ pub fn Wrapper() -> Element {
     ]);
 
     let mut footer_links = use_signal(|| vec![
-        FooterLink { icon: BsDiscord, to: "https://discord.com/users/501014325138292737".to_string() },
-        FooterLink { icon: BsTwitter, to: "https://twitter.com/VyaVma".to_string() },
-        FooterLink { icon: BsGithub, to: "https://github.com/segfau-yama".to_string() },
-        FooterLink { icon: BsEnvelopeFill, to: "mailto:suiki547@gmail.com".to_string() },
+        FooterLink { icon: Box::new(BsDiscord), to: "https://discord.com/users/501014325138292737".to_string() },
+        FooterLink { icon: Box::new(BsTwitter), to: "https://twitter.com/VyaVma".to_string() },
+        FooterLink { icon: Box::new(BsGithub), to: "https://github.com/segfau-yama".to_string() },
+        FooterLink { icon: Box::new(BsEnvelopeFill), to: "mailto:suiki547@gmail.com".to_string() },
     ]);
 
     rsx! {

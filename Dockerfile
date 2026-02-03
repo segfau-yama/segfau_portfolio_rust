@@ -20,5 +20,4 @@ COPY src ./src
 
 EXPOSE 8080
 
-# CMD ["dx", "serve"]
-CMD ["sleep", "infinity"]
+CMD ["dx", "serve"]
