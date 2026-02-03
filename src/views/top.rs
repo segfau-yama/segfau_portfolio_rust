@@ -5,7 +5,7 @@ use crate::components::{Parallax, Typography};
 pub fn TopView() -> Element {
     rsx! {
         Parallax {
-            img: "url(https://segfau-yama.github.io/segfau-portfolio/assets/top_image-212d7568.webp)", 
+            img: "url(https://segfau-yama.github.io/segfau-portfolio/assets/top_image-212d7568.webp)",
             height: "py-96",
             Typography {
                 text: "Segfau-Lab",

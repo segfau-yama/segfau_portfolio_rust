@@ -46,8 +46,7 @@ pub fn ScrollAnchor(props: ScrollAnchorProps) -> Element {
     let mut scroll = ScrollHandle::use_scroll();
 
     rsx! {
-        div {
-            onmounted: move |event: MountedEvent| scroll.set_anchor(props.id.clone(), event),
+        div { onmounted: move |event: MountedEvent| scroll.set_anchor(props.id.clone(), event),
             {props.children}
         }
     }

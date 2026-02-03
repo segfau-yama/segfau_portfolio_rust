@@ -14,8 +14,6 @@ pub struct FooterProps {
 #[component]
 pub fn Footer(props: FooterProps) -> Element {
     rsx! {
-        footer { class: "block mx-auto w-full {props.size} {props.color}",
-            {props.children}
-        }
+        footer { class: "block mx-auto w-full {props.size} {props.color}", {props.children} }
     }
 }

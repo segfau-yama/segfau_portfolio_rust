@@ -4,8 +4,7 @@ use crate::components::{Avatar, Typography};
 #[component]
 pub fn ProfileView() -> Element {
     rsx! {
-        div {
-            class: "mx-auto pt-20 px-4 justify-center",
+        div { class: "mx-auto pt-20 px-4 justify-center",
             Typography {
                 text: "Profile",
                 size: "text-5xl",
@@ -13,23 +12,20 @@ pub fn ProfileView() -> Element {
                 position: "text-center",
                 class: "font-bold mb-6",
             }
-            div {
-                class: "flex flex-wrap gap-6 justify-center",
-                div {
-                    class: "
+            div { class: "flex flex-wrap gap-6 justify-center",
+                div { class: "
                         flex
                         items-center
                         justify-center
                     ",
-                    Avatar { 
-                        image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp", 
-                        rounded: "rounded-full", 
+                    Avatar {
+                        image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp",
+                        rounded: "rounded-full",
                         size: "size-[300px]",
                         class: "shadow shadow-sm border-1 border-slate-200",
                     }
                 }
-                div {
-                    class: "
+                div { class: "
                         flex
                         items-center
                         justify-center

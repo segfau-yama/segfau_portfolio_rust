@@ -30,8 +30,7 @@ pub struct CardHeaderProps {
 #[component]
 pub fn CardHeader(props: CardHeaderProps) -> Element {
     rsx! {
-        div { 
-            class: "relative overflow-hidden flex-auto {props.color} {props.size} {props.class:?}",
+        div { class: "relative overflow-hidden flex-auto {props.color} {props.size} {props.class:?}",
             {props.children}
         }
     }
@@ -46,11 +45,8 @@ pub struct CardBodyProps {
 #[component]
 pub fn CardBody(props: CardBodyProps) -> Element {
     rsx! {
-        div {
-            class: "p-4",
-            {props.children}
-        }
-        
+        div { class: "p-4", {props.children} }
+
     }
 }
 
@@ -62,9 +58,6 @@ pub struct CardFooterProps {
 #[component]
 pub fn CardFooter(props: CardFooterProps) -> Element {
     rsx! {
-        div {
-            class: "px-4 pb-4 pt-0 mt-2",
-            {props.children}
-        }
+        div { class: "px-4 pb-4 pt-0 mt-2", {props.children} }
     }
 }

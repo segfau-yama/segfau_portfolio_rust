@@ -37,9 +37,7 @@ pub fn SkillView() -> Element {
                             color: "white",
                             shadow: "shadow-sm",
                             rounded: "rounded-lg",
-                            CardHeader {
-                                color: "text-black",
-                                size: "h-auto",
+                            CardHeader { color: "text-black", size: "h-auto",
                                 Typography {
                                     text: {card.title},
                                     size: "text-3xl",
@@ -53,8 +51,7 @@ pub fn SkillView() -> Element {
                                     percentage: "w-[90%]",
                                     class: "bg-blue-500",
                                     ProgressBarContent {
-                                        div { 
-                                            class: "flex items-center gap-2",
+                                        div { class: "flex items-center gap-2",
                                             Icon {
                                                 width: 20,
                                                 height: 20,
@@ -64,7 +61,7 @@ pub fn SkillView() -> Element {
                                             div { "React" }
                                         }
                                     }
-                                    ProgressBarContent {"90%"}
+                                    ProgressBarContent { "90%" }
                                 }
                                 ProgressBar {
                                     percentage: "w-[30%]",
@@ -80,7 +77,7 @@ pub fn SkillView() -> Element {
                                             div { "Vue" }
                                         }
                                     }
-                                    ProgressBarContent {"30%"}
+                                    ProgressBarContent { "30%" }
                                 }
                                 ProgressBar {
                                     percentage: "w-[75%]",
@@ -96,7 +93,7 @@ pub fn SkillView() -> Element {
                                             div { "Dioxus" }
                                         }
                                     }
-                                    ProgressBarContent {"75%"}
+                                    ProgressBarContent { "75%" }
                                 }
                             }
                         }

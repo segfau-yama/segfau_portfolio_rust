@@ -7,6 +7,5 @@ pub struct ThemeProviderProps {
 
 #[component]
 pub fn ThemeProvider(props: ThemeProviderProps) -> Element {
-    rsx! {
-    }
+    rsx! {}
 }

@@ -13,9 +13,7 @@ pub struct RowProps {
 pub fn Row(props: RowProps) -> Element {
 
     rsx! {
-        div { class: "grid {props.gap} {props.cols} {props.class}",
-            {props.children}
-        }
+        div { class: "grid {props.gap} {props.cols} {props.class}", {props.children} }
     }
 }
 
@@ -29,8 +27,6 @@ pub struct ColProps {
 #[component]
 pub fn Col(props: ColProps) -> Element {
     rsx! {
-        div { class: "{props.class}",
-            {props.children}
-        }
+        div { class: "{props.class}", {props.children} }
     }
 }

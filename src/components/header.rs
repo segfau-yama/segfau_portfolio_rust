@@ -25,8 +25,7 @@ pub struct HeaderTitleProps {
 #[component]
 pub fn HeaderTitle(props: HeaderTitleProps) -> Element {
     rsx! {
-        div {
-            class: "mr-4 cursor-pointer py-1.5 text-slate-50 font-semibold sm:text-xl text-2xl",
+        div { class: "mr-4 cursor-pointer py-1.5 text-slate-50 font-semibold sm:text-xl text-2xl",
             {props.children}
         }
     }
@@ -39,9 +38,7 @@ pub struct HeaderItemWrapperProps {
 #[component]
 pub fn HeaderItemWrapper(props: HeaderItemWrapperProps) -> Element {
     rsx! {
-        ul { class: "flex flex-col gap-2 mb-0 mt-0 flex-row items-center gap-6",
-            {props.children}
-        }
+        ul { class: "flex flex-col gap-2 mb-0 mt-0 flex-row items-center gap-6", {props.children} }
     }
 }
 

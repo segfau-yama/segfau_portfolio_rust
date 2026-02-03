@@ -13,13 +13,9 @@ pub struct ProgressBarProps {
 pub fn ProgressBar(props: ProgressBarProps) -> Element {
     rsx! {
         div { class: "w-full",
-            div { class: "flex items-center justify-between gap-4 my-2",
-                {props.children}
-            }
+            div { class: "flex items-center justify-between gap-4 my-2", {props.children} }
             div { class: "flex-start flex h-2.5 w-full overflow-hidden font-sans text-xs font-medium",
-                div {
-                    class: "flex items-center justify-center h-full overflow-hidden text-white break-all rounded-l-full {props.percentage} {props.class}",
-                }
+                div { class: "flex items-center justify-center h-full overflow-hidden text-white break-all rounded-l-full {props.percentage} {props.class}" }
                 div { class: "flex flex-auto bg-gray-300 rounded-r-full" }
             }
         }
@@ -54,9 +50,7 @@ pub fn ProgressBarPercentage(props: ProgressBarPercentageProps) -> Element {
             {props.percentage.clone()}
         }
         div { class: "flex-start flex h-2.5 w-full overflow-hidden font-sans text-xs font-medium",
-            div {
-                class: "flex items-center justify-center h-full overflow-hidden text-white break-all rounded-l-full w-[{props.percentage.clone()}] {props.class}",
-            }
+            div { class: "flex items-center justify-center h-full overflow-hidden text-white break-all rounded-l-full w-[{props.percentage.clone()}] {props.class}" }
             div { class: "flex flex-auto bg-gray-300 rounded-r-full" }
         }
     }
