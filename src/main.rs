@@ -3,7 +3,7 @@ use dioxus_free_icons::icons::bs_icons::{BsDiscord, BsTwitter, BsGithub, BsEnvel
 use dioxus_free_icons::Icon;
 
 use pages::{Home, Blog};
-use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink};
+use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar};
 mod components;
 mod views;
 mod pages;
@@ -55,7 +55,7 @@ struct HeaderLink {
 }
 
 #[derive(PartialEq, Clone)]
-struct FooterLink {
+struct FooterLink<T> {
     icon: T,
     to: String,
 }
@@ -80,40 +80,31 @@ pub fn Wrapper() -> Element {
 
     rsx! {
         div { class: "bg-gray-100",
-            Header { 
-                color: "bg-emerald-500", 
-                size: "py-2 lg:py-3",
+            Header { color: "bg-emerald-500", size: "py-2 lg:py-3 px-10",
                 HeaderTitle {
-                    Link {
-                        to: Route::Home {},
-                        "Segfau-Lab"
-                    }
+                    Link { to: Route::Home {}, "Segfau-Lab" }
                 }
                 HeaderItemWrapper {
                     for link in header_links.read().iter() {
                         HeaderItem {
-                            ScrollLink {
-                                to: link.anchor.clone(),
-                                name: link.name.clone(),
-                            }
+                            ScrollLink { to: link.to.clone(), name: link.name.clone() }
                         }
                     }
                 }
             }
-            div { class: "container bg-white pb-10 max-w-screen-xl mx-auto",
-                Outlet::<Route> {}
-            }
+            div { class: "container bg-white pb-10 max-w-screen-xl mx-auto", Outlet::<Route> {} }
             Footer {
                 color: "bg-emerald-500",
                 size: "px-4 py-2 lg:px-8 lg:py-3 p-8",
                 div { class: "container flex flex-wrap items-center justify-between text-slate-50 max-w-screen-xl mx-auto",
-                    Avatar { 
-                        image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp", rounded: "rounded-full", size: "size-16" 
+                    Avatar {
+                        image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp",
+                        rounded: "rounded-full",
+                        size: "size-16",
                     }
                     div { class: "flex flex-wrap items-center gap-y-2 gap-x-8",
                         for link in footer_links.read().iter() {
-                            a {
-                                href: link.to,
+                            a { href: link.to,
                                 Icon {
                                     width: 30,
                                     height: 30,
@@ -121,7 +112,7 @@ pub fn Wrapper() -> Element {
                                     icon: link.icon,
                                 }
                             }
-                        } 
+                        }
                     }
                 }
                 p { class: "block mb-4 text-sm text-center text-slate-100 md:mb-0 border-t border-slate-200 mt-4 pt-4",

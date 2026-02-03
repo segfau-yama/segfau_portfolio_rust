@@ -10,7 +10,7 @@ pub struct HeaderProps {
 #[component]
 pub fn Header(props: HeaderProps) -> Element {
     rsx! {
-        nav { class: "{props.size} px-10 {props.color} sticky top-0 z-[9999]",
+        nav { class: "{props.size} {props.color} sticky top-0 z-[9999]",
             div { class: "container flex flex-wrap sm:justify-between items-center sm:flex-row flex-col text-slate-50 max-w-screen-xl mx-auto",
                 {props.children}
             }

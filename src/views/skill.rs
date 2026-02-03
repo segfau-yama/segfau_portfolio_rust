@@ -38,8 +38,8 @@ pub fn SkillView() -> Element {
                             shadow: "shadow-sm",
                             rounded: "rounded-lg",
                             CardHeader {
-                                color: "white",
-                                size: "auto",
+                                color: "text-black",
+                                size: "h-auto",
                                 Typography {
                                     text: {card.title},
                                     size: "text-3xl",

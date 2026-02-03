@@ -86,8 +86,8 @@ pub fn WorkView() -> Element {
                             shadow: "shadow-sm",
                             rounded: "rounded-lg",
                             CardHeader {
-                                color: "white",
-                                size: "64",
+                                color: "h-white",
+                                size: "h-64",
                                 img {
                                     alt: "card-image",
                                     src: {card.image},

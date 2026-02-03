@@ -20,4 +20,5 @@ COPY src ./src
 
 EXPOSE 8080
 
-CMD ["dx", "serve", "--platform", "web", "--release", "--addr", "0.0.0.0", "--port", "8080"]
+# CMD ["dx", "serve"]
+CMD ["sleep", "infinity"]

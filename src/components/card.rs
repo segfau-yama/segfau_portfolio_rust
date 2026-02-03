@@ -31,7 +31,7 @@ pub struct CardHeaderProps {
 pub fn CardHeader(props: CardHeaderProps) -> Element {
     rsx! {
         div { 
-            class: "relative overflow-hidden flex-auto text-{props.color} h-{props.size} {props.class:?}",
+            class: "relative overflow-hidden flex-auto {props.color} {props.size} {props.class:?}",
             {props.children}
         }
     }
