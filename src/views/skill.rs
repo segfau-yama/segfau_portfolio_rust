@@ -1,7 +1,9 @@
 use dioxus::prelude::*;
 use crate::components::{Card, CardHeader, CardBody, CardFooter, Col, Row, Typography, ProgressBar};
 use hmziq_dioxus_free_icons::icons::fa_solid_icons::{FaDna};
-use hmziq_dioxus_free_icons::icons::si_icons::{SiReact, SiVuedotjs, SiRust, SiFastapi, SiC, SiArduino, SiEspressif, SiKicad, SiFreecad};
+use hmziq_dioxus_free_icons::icons::si_icons::{
+    SiReact, SiVuedotjs, SiFastapi, SiPlatformio, SiArduino, SiEspressif, SiKicad, SiFreecad, SiDassaultsystemes, SiCplusplus, SiRust, SiPython, SiJavascript, 
+};
 use hmziq_dioxus_free_icons::Icon;
 
 #[derive(PartialEq, Clone)]
@@ -20,73 +22,104 @@ pub struct SkillData {
 
 #[component]
 pub fn SkillView() -> Element {
+    let language_skills = vec![
+        SkillData {
+            name: "C/C++",
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiCplusplus, class: "text-sky-500" }},
+            percentage: "w-[50%]",
+            color: "bg-sky-500",
+        },
+        SkillData {
+            name: "Rust",
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiRust, class: "text-black" }},
+            percentage: "w-[20%]",
+            color: "bg-black",
+        },
+        SkillData {
+            name: "Python",
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiPython, class: "text-yellow-300" }},
+            percentage: "w-[40%]",
+            color: "bg-yellow-300",
+        },
+        SkillData {
+            name: "JavaScript",
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiJavascript, class: "text-yellow-500" }},
+            percentage: "w-[20%]",
+            color: "bg-yellow-500",
+        },
+    ];
     let web_skills = vec![
         SkillData {
             name: "React",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#61DBFB", icon: SiReact }},
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiReact, class: "text-blue-500" }},
             percentage: "w-[15%]",
             color: "bg-blue-500",
         },
         SkillData {
             name: "Vue",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#42b883", icon: SiVuedotjs }},
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiVuedotjs, class: "text-teal-800" }},
             percentage: "w-[40%]",
-            color: "bg-green-500",
+            color: "bg-teal-800",
         },
         SkillData {
             name: "Dioxus",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#dea584", icon: FaDna }},
+            icon: rsx! {Icon { width: 20, height: 20, icon: FaDna, class: "text-orange-500" }},
             percentage: "w-[10%]",
             color: "bg-orange-500",
         },
         SkillData {
             name: "FastAPI",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#306998", icon: SiFastapi }},
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiFastapi, class: "text-emerald-500" }},
             percentage: "w-[30%]",
-            color: "bg-red-500",
+            color: "bg-emerald-500",
         },
     ];
     let embedded_skills = vec![
         SkillData {
-            name: "C",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#555555", icon: SiC }},
+            name: "PlatformIO",
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiPlatformio, class: "text-yellow-300" }},
             percentage: "w-[30%]",
-            color: "bg-blue-500",
+            color: "bg-yellow-300",
         },
         SkillData {
             name: "Arduino",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#00979D", icon: SiArduino }},
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiArduino, class: "text-cyan-500" }},
             percentage: "w-[50%]",
             color: "bg-cyan-500",
         },
         SkillData {
             name: "Espressif",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#E73531", icon: SiEspressif }},
-            percentage: "w-[50%]",
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiEspressif, class: "text-red-500" }},
+            percentage: "w-[20%]",
             color: "bg-red-500",
         },
         SkillData {
             name: "Kicad",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#E9A827", icon: SiKicad }},
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiKicad, class: "text-indigo-500" }},
             percentage: "w-[50%]",
-            color: "bg-yellow-500",
+            color: "bg-indigo-500",
         },
     ];
     let design_skills = vec![
         SkillData {
             name: "FreeCAD",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#E73531", icon: SiFreecad }},
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiFreecad, class: "text-red-500" }},
             percentage: "w-[50%]",
             color: "bg-red-500",
         },
         SkillData {
             name: "SolidWorks",
-            icon: rsx! {},
-            percentage: "w-[50%]",
-            color: "bg-cyan-500",
+            icon: rsx! {Icon { width: 20, height: 20, icon: SiDassaultsystemes, class: "text-black" }},
+            percentage: "w-[30%]",
+            color: "bg-black",
         },
     ];
+
     let cards = use_signal(|| vec![
+        CardData {
+            title: "Programming Languages",
+            contents: language_skills.clone(),
+        },
         CardData {
             title: "Web Development",
             contents: web_skills.clone(),
@@ -99,6 +132,7 @@ pub fn SkillView() -> Element {
             title: "Design Development",
             contents: design_skills.clone(),
         },
+
     ]);
     rsx! {
         div { class: "mx-auto pt-20 px-4",
