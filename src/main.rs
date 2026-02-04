@@ -75,7 +75,7 @@ pub fn Wrapper() -> Element {
 
     rsx! {
         div { class: "bg-gray-100",
-            Header { color: "bg-emerald-500", size: "py-2 lg:py-3 px-10",
+            Header { color: "bg-emerald-500", size: "py-1 lg:py-3 px-10",
                 HeaderTitle {
                     "Segfau-Lab"
                 }

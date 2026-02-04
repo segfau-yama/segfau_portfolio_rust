@@ -25,7 +25,7 @@ pub struct HeaderTitleProps {
 #[component]
 pub fn HeaderTitle(props: HeaderTitleProps) -> Element {
     rsx! {
-        div { class: "mr-4 cursor-pointer py-1.5 text-slate-50 font-semibold sm:text-xl text-2xl",
+        div { class: "sm:mr-4 cursor-pointer py-1 text-slate-50 font-semibold sm:text-xl text-2xl",
             {props.children}
         }
     }
