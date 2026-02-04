@@ -3487,7 +3487,7 @@ async function __wbg_init(module_or_path) {
 globalThis.__wasm_split_main_initSync = initSync;
 __wbg_init({
   module_or_path:
-    "/segfau_portfolio_rust/docs/assets/segfau_portfolio_rust_bg-dxh8fd97b7ce420bcb3.wasm",
+    "/segfau_portfolio_rust/assets/segfau_portfolio_rust_bg-dxh8fd97b7ce420bcb3.wasm",
 }).then((wasm) => {
   globalThis.__dx_mainWasm = wasm;
   globalThis.__dx_mainInit = __wbg_init;
