@@ -5,6 +5,7 @@ pub struct TypographyProps {
     text: String,
     size: String,
     color: String,
+    #[props(default="".to_string())]
     position: String,
     #[props(default="".to_string())]
     class : String,

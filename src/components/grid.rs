@@ -2,8 +2,9 @@ use dioxus::prelude::*;
 
 #[derive(Props, PartialEq, Clone)]
 pub struct RowProps {
-    gap: String,
     cols: String,
+    #[props(default="".to_string())]
+    gap: String,
     #[props(default="".to_string())]
     class: String,
     children: Element,
