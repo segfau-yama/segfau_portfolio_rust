@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 use hmziq_dioxus_free_icons::icons::si_icons::{SiDiscord, SiX, SiGithub, SiGmail};
 use hmziq_dioxus_free_icons::Icon;
-use pages::{Home, Blog};
+use pages::Home;
 use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar};
 mod components;
 mod views;
@@ -17,8 +17,6 @@ enum Route {
     #[layout(Wrapper)]
         #[route("/")]
         Home {},
-        #[route("/blog/")]
-        Blog {},
 }
 
 enum Color {
