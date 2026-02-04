@@ -1,14 +1,16 @@
-use std::rc::Rc;
-
 use dioxus::prelude::*;
 use dioxus_free_icons::icons::bs_icons::{BsDiscord, BsTwitter, BsGithub, BsEnvelopeFill};
-use dioxus_free_icons::{Icon, IconShape};
+use dioxus_free_icons::Icon;
 
 use pages::{Home, Blog};
 use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar};
 mod components;
 mod views;
 mod pages;
+
+pub fn type_of<T>(_: &T) -> &'static str {
+    std::any::type_name::<T>()
+}
 
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
@@ -56,29 +58,30 @@ struct HeaderLink {
     to: String,
 }
 
-#[derive(PartialEq, Clone)]
-struct FooterLink<T: IconShape + Clone + PartialEq + 'static> {
-    icon: T,
+#[derive(Clone)]
+struct FooterLink {
+    icon: Element,
     to: String,
 }
 
 #[component]
 pub fn Wrapper() -> Element {
     let _scroll = ScrollHandle::init();
-    let mut header_links = use_signal(|| vec![
+    let links: Vec<HeaderLink> = vec![
         HeaderLink { name: "Home".to_string(), to: "home".to_string() },
         HeaderLink { name: "Profile".to_string(), to: "profile".to_string() },
         HeaderLink { name: "Skill".to_string(), to: "skill".to_string() },
         HeaderLink { name: "History".to_string(), to: "history".to_string() },
         HeaderLink { name: "Work".to_string(), to: "work".to_string() },
-    ]);
-
-    let mut footer_links = use_signal(|| vec![
-        FooterLink { icon: BsDiscord, to: "https://discord.com/users/501014325138292737".to_string() },
-        FooterLink { icon: BsTwitter, to: "https://twitter.com/VyaVma".to_string() },
-        FooterLink { icon: BsGithub, to: "https://github.com/segfau-yama".to_string() },
-        FooterLink { icon: BsEnvelopeFill, to: "mailto:suiki547@gmail.com".to_string() },
-    ]);
+    ];
+    let mut header_links = use_signal(|| links);
+    let footer_links_vec: Vec<FooterLink> = vec![
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsDiscord }}, to: "https://discord.com/users/501014325138292737".to_string() },
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsTwitter }}, to: "https://twitter.com/VyaVma".to_string() },
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsGithub }}, to: "https://github.com/segfau-yama".to_string() },
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsEnvelopeFill }}, to: "mailto:suiki547@gmail.com".to_string() },
+    ];
+    let mut footer_links = use_signal(|| footer_links_vec);
 
     rsx! {
         div { class: "bg-gray-100",
@@ -106,14 +109,7 @@ pub fn Wrapper() -> Element {
                     }
                     div { class: "flex flex-wrap items-center gap-y-2 gap-x-8",
                         for link in footer_links.read().iter() {
-                            a { href: link.to,
-                                Icon {
-                                    width: 30,
-                                    height: 30,
-                                    fill: "white",
-                                    icon: link.icon,
-                                }
-                            }
+                            a { href: link.to.clone(), { link.icon.clone() } }
                         }
                     }
                 }
