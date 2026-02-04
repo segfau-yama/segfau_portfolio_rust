@@ -15,6 +15,9 @@ pub fn ProgressBar(props: ProgressBarProps) -> Element {
     // State to control animation - starts at 0 width
     let mut is_visible = use_signal(|| false);
     
+    // Store percentage to avoid cloning on every render
+    let percentage = props.percentage.clone();
+    
     // Trigger animation when component mounts
     use_effect(move || {
         // Schedule the animation to start after initial render
@@ -23,11 +26,15 @@ pub fn ProgressBar(props: ProgressBarProps) -> Element {
             spawn(async move {
                 // Small delay to allow initial render before animation
                 use wasm_bindgen::prelude::*;
-                let window = web_sys::window().unwrap();
+                let window = web_sys::window()
+                    .expect("Failed to get window object for progress bar animation");
                 let promise = js_sys::Promise::new(&mut |resolve, _| {
-                    window.set_timeout_with_callback_and_timeout_and_arguments_0(&resolve, 50).unwrap();
+                    window.set_timeout_with_callback_and_timeout_and_arguments_0(&resolve, 50)
+                        .expect("Failed to set timeout for animation delay");
                 });
-                wasm_bindgen_futures::JsFuture::from(promise).await.unwrap();
+                wasm_bindgen_futures::JsFuture::from(promise)
+                    .await
+                    .expect("Failed to await animation delay");
                 is_visible.set(true);
             });
         }
@@ -40,7 +47,7 @@ pub fn ProgressBar(props: ProgressBarProps) -> Element {
     
     // Determine the width class based on animation state
     let width_class = if is_visible() {
-        props.percentage.clone()
+        percentage.clone()
     } else {
         "w-[0%]".to_string()
     };
