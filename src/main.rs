@@ -1,7 +1,6 @@
 use dioxus::prelude::*;
-use dioxus_free_icons::icons::bs_icons::{BsDiscord, BsTwitter, BsGithub, BsEnvelopeFill};
-use dioxus_free_icons::Icon;
-
+use hmziq_dioxus_free_icons::icons::si_icons::{SiDiscord, SiX, SiGithub, SiGmail};
+use hmziq_dioxus_free_icons::Icon;
 use pages::{Home, Blog};
 use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar};
 mod components;
@@ -76,10 +75,10 @@ pub fn Wrapper() -> Element {
     ];
     let mut header_links = use_signal(|| links);
     let footer_links_vec: Vec<FooterLink> = vec![
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsDiscord }}, to: "https://discord.com/users/501014325138292737".to_string() },
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsTwitter }}, to: "https://twitter.com/VyaVma".to_string() },
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsGithub }}, to: "https://github.com/segfau-yama".to_string() },
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: BsEnvelopeFill }}, to: "mailto:suiki547@gmail.com".to_string() },
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiDiscord }}, to: "https://discord.com/users/501014325138292737".to_string() },
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiX }}, to: "https://twitter.com/VyaVma".to_string() },
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiGithub }}, to: "https://github.com/segfau-yama".to_string() },
+        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiGmail }}, to: "mailto:suiki547@gmail.com".to_string() },
     ];
     let mut footer_links = use_signal(|| footer_links_vec);
 

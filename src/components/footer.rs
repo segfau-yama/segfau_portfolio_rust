@@ -1,6 +1,4 @@
 use dioxus::prelude::*;
-use dioxus_free_icons::icons::bs_icons::{BsDiscord, BsTwitter, BsGithub, BsEnvelopeFill};
-use dioxus_free_icons::Icon;
 use crate::components::Avatar;
 
 #[derive(PartialEq, Clone, Props)]

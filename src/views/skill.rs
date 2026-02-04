@@ -1,8 +1,8 @@
 use dioxus::prelude::*;
 use crate::components::{Card, CardHeader, CardBody, CardFooter, Col, Row, Typography, ProgressBar};
-use dioxus_free_icons::icons::fa_brands_icons::{FaReact, FaVuejs, FaRust, FaPython};
-use dioxus_free_icons::icons::fa_solid_icons::{FaDna, FaC};
-use dioxus_free_icons::Icon;
+use hmziq_dioxus_free_icons::icons::fa_solid_icons::{FaDna};
+use hmziq_dioxus_free_icons::icons::si_icons::{SiReact, SiVuedotjs, SiRust, SiFastapi, SiC, SiArduino, SiEspressif, SiKicad, SiFreecad};
+use hmziq_dioxus_free_icons::Icon;
 
 #[derive(PartialEq, Clone)]
 pub struct CardData {
@@ -23,13 +23,13 @@ pub fn SkillView() -> Element {
     let web_skills = vec![
         SkillData {
             name: "React",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#61DBFB", icon: FaReact }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#61DBFB", icon: SiReact }},
             percentage: "w-[15%]",
             color: "bg-blue-500",
         },
         SkillData {
             name: "Vue",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#42b883", icon: FaVuejs }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#42b883", icon: SiVuedotjs }},
             percentage: "w-[40%]",
             color: "bg-green-500",
         },
@@ -41,7 +41,7 @@ pub fn SkillView() -> Element {
         },
         SkillData {
             name: "FastAPI",
-            icon: rsx! {Icon { width: 20, height: 20, fill: "#306998", icon: FaPython }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#306998", icon: SiFastapi }},
             percentage: "w-[30%]",
             color: "bg-red-500",
         },
@@ -49,25 +49,25 @@ pub fn SkillView() -> Element {
     let embedded_skills = vec![
         SkillData {
             name: "C",
-            icon: rsx! {img { width: "20", height: "20", src: "https://raw.githubusercontent.com/simple-icons/simple-icons/6c937be50b303846e0a4b725948814c78c3da048/icons/c.svg" }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#555555", icon: SiC }},
             percentage: "w-[30%]",
             color: "bg-blue-500",
         },
         SkillData {
             name: "Arduino",
-            icon: rsx! {img { width: "20", height: "20", src: "https://raw.githubusercontent.com/simple-icons/simple-icons/6c937be50b303846e0a4b725948814c78c3da048/icons/arduino.svg" }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#00979D", icon: SiArduino }},
             percentage: "w-[50%]",
             color: "bg-cyan-500",
         },
         SkillData {
             name: "Espressif",
-            icon: rsx! {img { width: "20", height: "20", src: "https://raw.githubusercontent.com/simple-icons/simple-icons/6c937be50b303846e0a4b725948814c78c3da048/icons/espressif.svg" }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#E73531", icon: SiEspressif }},
             percentage: "w-[50%]",
             color: "bg-red-500",
         },
         SkillData {
             name: "Kicad",
-            icon: rsx! {img { width: "20", height: "20", src: "https://raw.githubusercontent.com/simple-icons/simple-icons/6c937be50b303846e0a4b725948814c78c3da048/icons/kicad.svg" }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#E9A827", icon: SiKicad }},
             percentage: "w-[50%]",
             color: "bg-yellow-500",
         },
@@ -75,9 +75,9 @@ pub fn SkillView() -> Element {
     let design_skills = vec![
         SkillData {
             name: "FreeCAD",
-            icon: rsx! {img { width: "20", height: "20", src: "https://raw.githubusercontent.com/simple-icons/simple-icons/6c937be50b303846e0a4b725948814c78c3da048/icons/freecad.svg" }},
+            icon: rsx! {Icon { width: 20, height: 20, fill: "#E73531", icon: SiFreecad }},
             percentage: "w-[50%]",
-            color: "bg-blue-500",
+            color: "bg-red-500",
         },
         SkillData {
             name: "SolidWorks",
