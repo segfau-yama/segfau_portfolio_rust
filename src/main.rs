@@ -11,13 +11,6 @@ pub fn type_of<T>(_: &T) -> &'static str {
     std::any::type_name::<T>()
 }
 
-#[derive(Debug, Clone, Routable, PartialEq)]
-#[rustfmt::skip]
-enum Route {
-    #[layout(Wrapper)]
-        #[route("/")]
-        Home {},
-}
 
 enum Color {
     Primary,
@@ -45,7 +38,7 @@ fn App() -> Element {
     rsx! {
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: TAILWIND_CSS }
-        Router::<Route> {}
+        Wrapper {}
     }
 }
 
@@ -84,7 +77,7 @@ pub fn Wrapper() -> Element {
         div { class: "bg-gray-100",
             Header { color: "bg-emerald-500", size: "py-2 lg:py-3 px-10",
                 HeaderTitle {
-                    Link { to: Route::Home {}, "Segfau-Lab" }
+                    "Segfau-Lab"
                 }
                 HeaderItemWrapper {
                     for link in header_links.read().iter() {
@@ -94,7 +87,7 @@ pub fn Wrapper() -> Element {
                     }
                 }
             }
-            div { class: "container bg-white pb-10 max-w-screen-xl mx-auto", Outlet::<Route> {} }
+            div { class: "container bg-white pb-10 max-w-screen-xl mx-auto", Home {} }
             Footer {
                 color: "bg-emerald-500",
                 size: "px-4 py-2 lg:px-8 lg:py-3 p-8",

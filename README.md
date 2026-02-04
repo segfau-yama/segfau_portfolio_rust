@@ -1,59 +1,57 @@
 # Development
 
-Your new jumpstart project includes basic organization with an organized `assets` folder and a `components` folder.
-If you chose to develop with the router feature, you will also have a `views` folder.
+Your new workspace contains a member crate for each of the web, desktop and mobile platforms, and a `ui` crate for components that are shared between multiple platforms:
 
 ```
-project/
-├─ assets/ # Any assets that are used by the app should be placed here
+your_project/
+├─ README.md
+├─ Cargo.toml
+└─ packages/
+   ├─ web/
+   │  └─ ... # Web specific UI/logic
+   ├─ desktop/
+   │  └─ ... # Desktop specific UI/logic
+   ├─ mobile/
+   │  └─ ... # Mobile specific UI/logic
+   └─  ui/
+      └─ ... # Component shared between multiple platforms
+```
+
+## Platform crates
+
+Each platform crate contains the entry point for the platform, and any assets, components and dependencies that are specific to that platform. For example, the desktop crate in the workspace looks something like this:
+
+```
+desktop/ # The desktop crate contains all platform specific UI, logic and dependencies for the desktop app
+├─ assets/ # Assets used by the desktop app - Any platform specific assets should go in this folder
 ├─ src/
-│  ├─ main.rs # The entrypoint for the app. It also defines the routes for the app.
-│  ├─ components/
-│  │  ├─ mod.rs # Defines the components module
-│  │  ├─ hero.rs # The Hero component for use in the home page
-│  │  ├─ echo.rs # The echo component uses server functions to communicate with the server
-│  ├─ views/ # The views each route will render in the app.
-│  │  ├─ mod.rs # Defines the module for the views route and re-exports the components for each route
-│  │  ├─ blog.rs # The component that will render at the /blog/:id route
-│  │  ├─ home.rs # The component that will render at the / route
-├─ Cargo.toml # The Cargo.toml file defines the dependencies and feature flags for your project
+│  ├─ main.rs # The entrypoint for the desktop app.
+├─ Cargo.toml # The desktop crate's Cargo.toml - This should include all desktop specific dependencies
 ```
 
-### Automatic Tailwind (Dioxus 0.7+)
+When you start developing with the workspace setup each of the platform crates will look almost identical. The UI starts out exactly the same on all platforms. However, as you continue developing your application, this setup makes it easy to let the views for each platform change independently.
 
-As of Dioxus 0.7, there no longer is a need to manually install tailwind. Simply `dx serve` and you're good to go!
+## Shared UI crate
 
-Automatic tailwind is supported by checking for a file called `tailwind.css` in your app's manifest directory (next to Cargo.toml). To customize the file, use the dioxus.toml:
+The workspace contains a `ui` crate with components that are shared between multiple platforms. You should put any UI elements you want to use in multiple platforms in this crate. You can also put some shared client side logic in this crate, but be careful to not pull in platform specific dependencies. The `ui` crate starts out something like this:
 
-```toml
-[application]
-tailwind_input = "my.css"
-tailwind_output = "assets/out.css"
 ```
-
-### Tailwind Manual Install
-
-To use tailwind plugins or manually customize tailwind, you can can install the Tailwind CLI and use it directly.
-
-1. Install npm: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-2. Install the Tailwind CSS CLI: https://tailwindcss.com/docs/installation/tailwind-cli
-3. Run the following command in the root of the project to start the Tailwind CSS compiler:
-
-```bash
-npx @tailwindcss/cli -i ./input.css -o ./assets/tailwind.css --watch
+ui/
+├─ src/
+│  ├─ lib.rs # The entrypoint for the ui crate
+│  ├─ hero.rs # The Hero component that will be used in every platform
 ```
 
 ### Serving Your App
 
-Run the following command in the root of your project to start developing with the default platform:
-
+Navigate to the platform crate of your choice:
 ```bash
-dx serve --platform web
+cd web
 ```
 
-To run for a different platform, use the `--platform platform` flag. E.g.
-```bash
-dx serve --platform desktop
-```
+and serve:
 
+```bash
+dx serve
+```
 
