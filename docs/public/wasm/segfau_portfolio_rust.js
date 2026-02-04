@@ -3364,7 +3364,7 @@ globalThis.__wasm_split_main_initSync = initSync;
 
 // Actually perform the load
 __wbg_init({
-  module_or_path: "./segfau_portfolio_rust_bg.wasm",
+  module_or_path: "segfau_portfolio_rust_bg.wasm",
 }).then((wasm) => {
   // assign this module to be accessible globally
   globalThis.__dx_mainWasm = wasm;
