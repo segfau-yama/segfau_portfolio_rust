@@ -38,7 +38,7 @@ pub struct HeaderItemWrapperProps {
 #[component]
 pub fn HeaderItemWrapper(props: HeaderItemWrapperProps) -> Element {
     rsx! {
-        ul { class: "flex flex-col gap-2 mb-0 mt-0 flex-row items-center gap-6", {props.children} }
+        ul { class: "flex flex-col gap-2 mb-0 mt-0 flex-row items-center sm:gap-6 gap-4", {props.children} }
     }
 }
 
@@ -49,7 +49,7 @@ pub struct HeaderItemProps {
 #[component]
 pub fn HeaderItem(props: HeaderItemProps) -> Element {
     rsx! {
-        li { class: "flex items-center p-1 text-md gap-x-2 hover:text-slate-200 focus:text-slate-400",
+        li { class: "flex items-center p-1 sm:text-md text-sm gap-x-2 hover:text-slate-200 focus:text-slate-400",
             {props.children}
         }
     }
