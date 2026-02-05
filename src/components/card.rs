@@ -5,14 +5,17 @@ pub struct CardProps {
     color: String,
     shadow: String,
     rounded: String,
-    class: Option<String>,
+    #[props(default = "".to_string())]
+    size: String,
+    #[props(default = "".to_string())]
+    class: String,
     children: Element,
 }
 
 #[component]
 pub fn Card(props: CardProps) -> Element {
     rsx! {
-        div { class: "relative flex flex-col border border-slate-200 {props.color} {props.shadow} {props.rounded} {props.class:?}",
+        div { class: "relative flex flex-col border border-slate-200 {props.color} {props.shadow} {props.rounded} {props.size} {props.class:?}",
             {props.children}
         }
     }
@@ -39,25 +42,29 @@ pub fn CardHeader(props: CardHeaderProps) -> Element {
 
 #[derive(PartialEq, Clone, Props)]
 pub struct CardBodyProps {
+    #[props(default = "".to_string())]
+    size: String,
     children: Element,
 }
 
 #[component]
 pub fn CardBody(props: CardBodyProps) -> Element {
     rsx! {
-        div { class: "p-4", {props.children} }
+        div { class: "p-4 {props.size}", {props.children} }
 
     }
 }
 
 #[derive(PartialEq, Clone, Props)]
 pub struct CardFooterProps {
+    #[props(default = "".to_string())]
+    size: String,
     children: Element,
 }
 
 #[component]
 pub fn CardFooter(props: CardFooterProps) -> Element {
     rsx! {
-        div { class: "px-4 pb-4 pt-0 mt-2", {props.children} }
+        div { class: "px-4 pb-4 pt-0 mt-2 {props.size}", {props.children} }
     }
 }

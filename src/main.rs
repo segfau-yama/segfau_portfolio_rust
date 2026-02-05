@@ -75,7 +75,7 @@ pub fn Wrapper() -> Element {
 
     rsx! {
         div { class: "bg-gray-100",
-            Header { color: "bg-emerald-500", size: "py-1 lg:py-3 px-10",
+            Header { color: "bg-emerald-500", size: "py-1 lg:py-3 px-4",
                 HeaderTitle {
                     "Segfau-Lab"
                 }
@@ -90,7 +90,7 @@ pub fn Wrapper() -> Element {
             div { class: "container bg-white pb-10 max-w-screen-xl mx-auto", Home {} }
             Footer {
                 color: "bg-emerald-500",
-                size: "px-4 py-2 lg:px-8 lg:py-3 p-8",
+                size: "px-4 py-2 lg:px-8 lg:py-3",
                 div { class: "container flex flex-wrap items-center justify-between text-slate-50 max-w-screen-xl mx-auto",
                     Avatar {
                         image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp",

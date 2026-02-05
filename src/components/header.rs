@@ -11,7 +11,7 @@ pub struct HeaderProps {
 pub fn Header(props: HeaderProps) -> Element {
     rsx! {
         nav { class: "{props.size} {props.color} sticky top-0 z-[9999]",
-            div { class: "container flex flex-wrap sm:justify-between items-center sm:flex-row flex-col text-slate-50 max-w-screen-xl mx-auto",
+            div { class: "container flex flex-wrap sm:justify-between sm:flex-row flex-col text-slate-50 max-w-screen-xl mx-auto",
                 {props.children}
             }
         }
@@ -25,7 +25,7 @@ pub struct HeaderTitleProps {
 #[component]
 pub fn HeaderTitle(props: HeaderTitleProps) -> Element {
     rsx! {
-        div { class: "sm:mr-4 cursor-pointer py-1 text-slate-50 font-semibold sm:text-xl text-2xl",
+        div { class: "flex justify-center sm:mr-4 cursor-pointer py-1 text-slate-50 font-semibold sm:text-xl text-2xl",
             {props.children}
         }
     }
@@ -38,7 +38,7 @@ pub struct HeaderItemWrapperProps {
 #[component]
 pub fn HeaderItemWrapper(props: HeaderItemWrapperProps) -> Element {
     rsx! {
-        ul { class: "flex flex-col gap-2 mb-0 mt-0 flex-row items-center sm:gap-6 gap-4", {props.children} }
+        ul { class: "flex justify-between items-center sm:gap-1 gap-4 px-4", {props.children} }
     }
 }
 

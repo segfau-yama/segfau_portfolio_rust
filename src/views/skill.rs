@@ -146,7 +146,7 @@ pub fn SkillView() -> Element {
             Row {
                 cols: "grid-cols-1",
                 gap: "gap-4",
-                class: "justify-center lg:grid-cols-2",
+                class: "justify-center md:grid-cols-2",
                 for card in cards.iter() {
                     Col {
                         Card {
@@ -162,6 +162,7 @@ pub fn SkillView() -> Element {
                                 }
                             }
                             CardBody {
+                                size: "h-auto",
                                 Row {
                                     cols: "grid-cols-1",
                                     gap: "gap-y-2",
