@@ -1,5 +1,6 @@
 use dioxus::prelude::*;
 use crate::components::{Card, CardHeader, CardBody, CardFooter, Col, Row, Typography, ProgressBar};
+use crate::logics::IconArc;
 use hmziq_dioxus_free_icons::icons::fa_solid_icons::{FaDna};
 use hmziq_dioxus_free_icons::icons::si_icons::{
     SiReact, SiVuedotjs, SiFastapi, SiPlatformio, SiArduino, SiEspressif, SiKicad, SiFreecad, SiDassaultsystemes, SiCplusplus, SiRust, SiPython, SiJavascript, 
@@ -7,42 +8,6 @@ use hmziq_dioxus_free_icons::icons::si_icons::{
 use hmziq_dioxus_free_icons::Icon;
 use hmziq_dioxus_free_icons::IconShape;
 use std::sync::Arc;
-
-struct IconBox(Arc<dyn IconShape>);
-
-
-impl IconShape for IconBox {
-    fn view_box(&self) -> &str { 
-        self.0.view_box() 
-    }
-    fn xmlns(&self) -> &str { 
-        self.0.xmlns() 
-    }
-    fn child_elements(&self) -> Element {
-        self.0.child_elements()
-    }
-    fn fill_and_stroke<'a>(&self, user_color: &'a str) -> (&'a str, &'a str, &'a str) {
-        self.0.fill_and_stroke(user_color)
-    }
-    fn stroke_linecap(&self) -> &str { 
-        self.0.stroke_linecap() 
-    }
-    fn stroke_linejoin(&self) -> &str { 
-        self.0.stroke_linejoin() 
-    }
-}
-
-impl Clone for IconBox {
-    fn clone(&self) -> Self {
-        Self(Arc::clone(&self.0))
-    }
-}
-
-impl PartialEq for IconBox {
-    fn eq(&self, other: &Self) -> bool {
-        std::ptr::eq(self, other)
-    }
-}
 
 #[derive(PartialEq, Clone)]
 pub struct CardData {
@@ -53,9 +18,10 @@ pub struct CardData {
 #[derive(PartialEq, Clone)]
 pub struct SkillData {
     name: &'static str,
-    icon: IconBox,
+    icon: IconArc,
     percentage: &'static str,
-    color: &'static str,
+    text_color: &'static str,
+    bg_color: &'static str,
 }
 
 #[component]
@@ -63,93 +29,107 @@ pub fn SkillView() -> Element {
     let language_skills = vec![
         SkillData {
             name: "C/C++",
-            icon: IconBox(Arc::new(SiCplusplus)),
+            icon: IconArc(Arc::new(SiCplusplus)),
             percentage: "w-[50%]",
-            color: "bg-sky-500",
+            text_color: "text-sky-500",
+            bg_color: "bg-sky-500",
         },
         SkillData {
             name: "Rust",
-            icon: IconBox(Arc::new(SiRust)),
+            icon: IconArc(Arc::new(SiRust)),
             percentage: "w-[20%]",
-            color: "bg-black",
+            text_color: "text-black",
+            bg_color: "bg-black",
         },
         SkillData {
             name: "Python",
-            icon: IconBox(Arc::new(SiPython)),
+            icon: IconArc(Arc::new(SiPython)),
             percentage: "w-[40%]",
-            color: "bg-yellow-300",
+            text_color: "text-yellow-300",
+            bg_color: "bg-yellow-300",
         },
         SkillData {
             name: "JavaScript",
-            icon: IconBox(Arc::new(SiJavascript)),
+            icon: IconArc(Arc::new(SiJavascript)),
             percentage: "w-[20%]",
-            color: "bg-yellow-500",
+            text_color: "text-yellow-500",
+            bg_color: "bg-yellow-500",
         },
     ];
     let web_skills = vec![
         SkillData {
             name: "React",
-            icon: IconBox(Arc::new(SiReact)),
+            icon: IconArc(Arc::new(SiReact)),
             percentage: "w-[15%]",
-            color: "bg-blue-500",
+            text_color: "text-cyan-500",
+            bg_color: "bg-cyan-500",
         },
         SkillData {
             name: "Vue",
-            icon: IconBox(Arc::new(SiVuedotjs)),
+            icon: IconArc(Arc::new(SiVuedotjs)),
             percentage: "w-[40%]",
-            color: "bg-teal-800",
+            text_color: "text-teal-800",
+            bg_color: "bg-teal-800",
         },
         SkillData {
             name: "Dioxus",
-            icon: IconBox(Arc::new(FaDna)),
+            icon: IconArc(Arc::new(FaDna)),
             percentage: "w-[10%]",
-            color: "bg-orange-500",
+            text_color: "text-orange-500",
+            bg_color: "bg-orange-500",
         },
         SkillData {
             name: "FastAPI",
-            icon: IconBox(Arc::new(SiFastapi)),
+            icon: IconArc(Arc::new(SiFastapi)),
             percentage: "w-[30%]",
-            color: "bg-emerald-500",
+            text_color: "text-emerald-500",
+            bg_color: "bg-emerald-500",
         },
     ];
     let embedded_skills = vec![
         SkillData {
             name: "PlatformIO",
-            icon: IconBox(Arc::new(SiPlatformio)),
+            icon: IconArc(Arc::new(SiPlatformio)),
             percentage: "w-[30%]",
-            color: "bg-yellow-300",
+            text_color: "text-yellow-300",
+            bg_color: "bg-yellow-300",
         },
         SkillData {
             name: "Arduino",
-            icon: IconBox(Arc::new(SiArduino)),
+            icon: IconArc(Arc::new(SiArduino)),
             percentage: "w-[50%]",
-            color: "bg-cyan-500",
+            text_color: "text-cyan-500",
+            bg_color: "bg-cyan-500",
         },
         SkillData {
             name: "Espressif",
-            icon: IconBox(Arc::new(SiEspressif)),
+            icon: IconArc(Arc::new(SiEspressif)),
             percentage: "w-[20%]",
-            color: "bg-red-500",
+            text_color: "text-red-500",
+            bg_color: "bg-red-500",
         },
         SkillData {
             name: "Kicad",
-            icon: IconBox(Arc::new(SiKicad)),
+            icon: IconArc(Arc::new(SiKicad)),
             percentage: "w-[50%]",
-            color: "bg-indigo-500",
+            text_color: "text-indigo-500",
+            bg_color: "bg-indigo-500",
         },
     ];
     let design_skills = vec![
         SkillData {
             name: "FreeCAD",
-            icon: IconBox(Arc::new(SiFreecad)),
+            icon: IconArc(Arc::new(SiFreecad)),
             percentage: "w-[50%]",
-            color: "bg-red-500",
+            text_color: "text-red-500",
+            bg_color: "bg-red-500",
         },
         SkillData {
             name: "SolidWorks",
-            icon: IconBox(Arc::new(SiDassaultsystemes)),
+            icon: IconArc(Arc::new(SiDassaultsystemes)),
             percentage: "w-[30%]",
-            color: "bg-black",
+            text_color: "text-black",
+            bg_color: "bg-black",
         },
     ];
 
@@ -213,7 +193,7 @@ pub fn SkillView() -> Element {
                                                         width: 20,
                                                         height: 20,
                                                         icon: skill.icon.clone(),
-                                                        class: "text-black",
+                                                        class: {skill.text_color},
                                                     }
                                                 }
                                                 div {
@@ -236,7 +216,7 @@ pub fn SkillView() -> Element {
                                             ProgressBar {
                                                 percentage: {skill.percentage},
                                                 rounded: "rounded-s-md",
-                                                class: {skill.color},
+                                                class: {skill.bg_color},
                                             }
                                         }
                                     }

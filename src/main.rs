@@ -1,11 +1,14 @@
+use std::sync::Arc;
 use dioxus::prelude::*;
 use hmziq_dioxus_free_icons::icons::si_icons::{SiDiscord, SiX, SiGithub, SiGmail};
 use hmziq_dioxus_free_icons::Icon;
 use pages::Home;
 use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar};
+use logics::IconArc;
 mod components;
 mod views;
 mod pages;
+mod logics;
 
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
@@ -32,7 +35,7 @@ struct HeaderLink {
 
 #[derive(Clone)]
 struct FooterLink {
-    icon: Element,
+    icon: IconArc,
     to: String,
 }
 
@@ -48,10 +51,10 @@ pub fn Wrapper() -> Element {
     ];
     let mut header_links = use_signal(|| links);
     let footer_links_vec: Vec<FooterLink> = vec![
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiDiscord }}, to: "https://discord.com/users/501014325138292737".to_string() },
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiX }}, to: "https://twitter.com/VyaVma".to_string() },
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiGithub }}, to: "https://github.com/segfau-yama".to_string() },
-        FooterLink { icon: rsx! {Icon { width: 30, height: 30, fill: "white", icon: SiGmail }}, to: "mailto:suiki547@gmail.com".to_string() },
+        FooterLink { icon: IconArc(Arc::new(SiDiscord)), to: "https://discord.com/users/501014325138292737".to_string() },
+        FooterLink { icon: IconArc(Arc::new(SiX)), to: "https://twitter.com/VyaVma".to_string() },
+        FooterLink { icon: IconArc(Arc::new(SiGithub)), to: "https://github.com/segfau-yama".to_string() },
+        FooterLink { icon: IconArc(Arc::new(SiGmail)), to: "mailto:suiki547@gmail.com".to_string() },
     ];
     let mut footer_links = use_signal(|| footer_links_vec);
 
@@ -80,8 +83,14 @@ pub fn Wrapper() -> Element {
                         size: "size-16",
                     }
                     div { class: "flex flex-wrap items-center gap-y-2 gap-x-8",
-                        for link in footer_links.read().iter() {
-                            a { href: link.to.clone(), { link.icon.clone() } }
+                        for link in footer_links.iter() {
+                            a { href: link.to.clone(), 
+                                Icon {
+                                    width: 30,
+                                    height: 30,
+                                    icon: link.icon.clone(),
+                                }
+                            }
                         }
                     }
                 }
