@@ -7,24 +7,6 @@ mod components;
 mod views;
 mod pages;
 
-pub fn type_of<T>(_: &T) -> &'static str {
-    std::any::type_name::<T>()
-}
-
-
-enum Color {
-    Primary,
-    Secondary,
-    Success,
-    Danger,
-    Warning,
-    Info,
-}
-
-enum Theme {
-    Light,
-    Dark,
-}
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const TAILWIND_CSS: Asset = asset!("/assets/tailwind.css");

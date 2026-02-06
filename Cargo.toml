@@ -8,7 +8,7 @@ edition = "2021"
 
 [dependencies]
 dioxus = { version = "0.7.3" }
-hmziq-dioxus-free-icons = { version = "0.10.1", default-features = false, features = ["bootstrap", "font-awesome-solid", "simple-icons"] }
+hmziq-dioxus-free-icons = { version = "0.10.1", default-features = false, features = ["font-awesome-solid", "simple-icons"] }
 
 [features]
 default = ["web"]

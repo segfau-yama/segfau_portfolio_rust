@@ -5,6 +5,44 @@ use hmziq_dioxus_free_icons::icons::si_icons::{
     SiReact, SiVuedotjs, SiFastapi, SiPlatformio, SiArduino, SiEspressif, SiKicad, SiFreecad, SiDassaultsystemes, SiCplusplus, SiRust, SiPython, SiJavascript, 
 };
 use hmziq_dioxus_free_icons::Icon;
+use hmziq_dioxus_free_icons::IconShape;
+use std::sync::Arc;
+
+struct IconBox(Arc<dyn IconShape>);
+
+
+impl IconShape for IconBox {
+    fn view_box(&self) -> &str { 
+        self.0.view_box() 
+    }
+    fn xmlns(&self) -> &str { 
+        self.0.xmlns() 
+    }
+    fn child_elements(&self) -> Element {
+        self.0.child_elements()
+    }
+    fn fill_and_stroke<'a>(&self, user_color: &'a str) -> (&'a str, &'a str, &'a str) {
+        self.0.fill_and_stroke(user_color)
+    }
+    fn stroke_linecap(&self) -> &str { 
+        self.0.stroke_linecap() 
+    }
+    fn stroke_linejoin(&self) -> &str { 
+        self.0.stroke_linejoin() 
+    }
+}
+
+impl Clone for IconBox {
+    fn clone(&self) -> Self {
+        Self(Arc::clone(&self.0))
+    }
+}
+
+impl PartialEq for IconBox {
+    fn eq(&self, other: &Self) -> bool {
+        std::ptr::eq(self, other)
+    }
+}
 
 #[derive(PartialEq, Clone)]
 pub struct CardData {
@@ -15,7 +53,7 @@ pub struct CardData {
 #[derive(PartialEq, Clone)]
 pub struct SkillData {
     name: &'static str,
-    icon: Element,
+    icon: IconBox,
     percentage: &'static str,
     color: &'static str,
 }
@@ -25,25 +63,25 @@ pub fn SkillView() -> Element {
     let language_skills = vec![
         SkillData {
             name: "C/C++",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiCplusplus, class: "text-sky-500" }},
+            icon: IconBox(Arc::new(SiCplusplus)),
             percentage: "w-[50%]",
             color: "bg-sky-500",
         },
         SkillData {
             name: "Rust",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiRust, class: "text-black" }},
+            icon: IconBox(Arc::new(SiRust)),
             percentage: "w-[20%]",
             color: "bg-black",
         },
         SkillData {
             name: "Python",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiPython, class: "text-yellow-300" }},
+            icon: IconBox(Arc::new(SiPython)),
             percentage: "w-[40%]",
             color: "bg-yellow-300",
         },
         SkillData {
             name: "JavaScript",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiJavascript, class: "text-yellow-500" }},
+            icon: IconBox(Arc::new(SiJavascript)),
             percentage: "w-[20%]",
             color: "bg-yellow-500",
         },
@@ -51,25 +89,25 @@ pub fn SkillView() -> Element {
     let web_skills = vec![
         SkillData {
             name: "React",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiReact, class: "text-blue-500" }},
+            icon: IconBox(Arc::new(SiReact)),
             percentage: "w-[15%]",
             color: "bg-blue-500",
         },
         SkillData {
             name: "Vue",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiVuedotjs, class: "text-teal-800" }},
+            icon: IconBox(Arc::new(SiVuedotjs)),
             percentage: "w-[40%]",
             color: "bg-teal-800",
         },
         SkillData {
             name: "Dioxus",
-            icon: rsx! {Icon { width: 20, height: 20, icon: FaDna, class: "text-orange-500" }},
+            icon: IconBox(Arc::new(FaDna)),
             percentage: "w-[10%]",
             color: "bg-orange-500",
         },
         SkillData {
             name: "FastAPI",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiFastapi, class: "text-emerald-500" }},
+            icon: IconBox(Arc::new(SiFastapi)),
             percentage: "w-[30%]",
             color: "bg-emerald-500",
         },
@@ -77,25 +115,25 @@ pub fn SkillView() -> Element {
     let embedded_skills = vec![
         SkillData {
             name: "PlatformIO",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiPlatformio, class: "text-yellow-300" }},
+            icon: IconBox(Arc::new(SiPlatformio)),
             percentage: "w-[30%]",
             color: "bg-yellow-300",
         },
         SkillData {
             name: "Arduino",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiArduino, class: "text-cyan-500" }},
+            icon: IconBox(Arc::new(SiArduino)),
             percentage: "w-[50%]",
             color: "bg-cyan-500",
         },
         SkillData {
             name: "Espressif",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiEspressif, class: "text-red-500" }},
+            icon: IconBox(Arc::new(SiEspressif)),
             percentage: "w-[20%]",
             color: "bg-red-500",
         },
         SkillData {
             name: "Kicad",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiKicad, class: "text-indigo-500" }},
+            icon: IconBox(Arc::new(SiKicad)),
             percentage: "w-[50%]",
             color: "bg-indigo-500",
         },
@@ -103,13 +141,13 @@ pub fn SkillView() -> Element {
     let design_skills = vec![
         SkillData {
             name: "FreeCAD",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiFreecad, class: "text-red-500" }},
+            icon: IconBox(Arc::new(SiFreecad)),
             percentage: "w-[50%]",
             color: "bg-red-500",
         },
         SkillData {
             name: "SolidWorks",
-            icon: rsx! {Icon { width: 20, height: 20, icon: SiDassaultsystemes, class: "text-black" }},
+            icon: IconBox(Arc::new(SiDassaultsystemes)),
             percentage: "w-[30%]",
             color: "bg-black",
         },
@@ -171,7 +209,12 @@ pub fn SkillView() -> Element {
                                         Col { class: "flex justify-between items-center",
                                             div { class: "flex justify-center items-center gap-x-1",
                                                 div {
-                                                    {skill.icon.clone()}
+                                                    Icon {
+                                                        width: 20,
+                                                        height: 20,
+                                                        icon: skill.icon.clone(),
+                                                        class: "text-black",
+                                                    }
                                                 }
                                                 div {
                                                     Typography {
