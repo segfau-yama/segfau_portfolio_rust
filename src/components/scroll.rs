@@ -1,4 +1,3 @@
-use dioxus::html::geometry::PixelsVector2D;
 use dioxus::prelude::*;
 use std::{collections::HashMap, rc::Rc};
 
@@ -60,7 +59,7 @@ pub struct ScrollLinkProps {
 
 #[component]
 pub fn ScrollLink(props: ScrollLinkProps) -> Element {
-    let mut scroll = ScrollHandle::use_scroll();
+    let scroll = ScrollHandle::use_scroll();
 
     rsx! {
         button {

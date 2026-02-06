@@ -1,12 +1,11 @@
 use dioxus::prelude::*;
-use crate::components::{Card, CardHeader, CardBody, CardFooter, Col, Row, Typography, ProgressBar};
+use crate::components::{Card, CardHeader, CardBody, Col, Row, Typography, ProgressBar};
 use crate::logics::IconArc;
 use hmziq_dioxus_free_icons::icons::fa_solid_icons::{FaDna};
 use hmziq_dioxus_free_icons::icons::si_icons::{
     SiReact, SiVuedotjs, SiFastapi, SiPlatformio, SiArduino, SiEspressif, SiKicad, SiFreecad, SiDassaultsystemes, SiCplusplus, SiRust, SiPython, SiJavascript, 
 };
 use hmziq_dioxus_free_icons::Icon;
-use hmziq_dioxus_free_icons::IconShape;
 use std::sync::Arc;
 
 #[derive(PartialEq, Clone)]
@@ -173,7 +172,7 @@ pub fn SkillView() -> Element {
                             rounded: "rounded-lg",
                             CardHeader { color: "text-black", size: "h-auto",
                                 Typography {
-                                    text: {card.title},
+                                    text: card.title,
                                     size: "text-3xl",
                                     color: "text-slate-800",
                                     class: "my-2 font-semibold text-center",
@@ -193,19 +192,19 @@ pub fn SkillView() -> Element {
                                                         width: 20,
                                                         height: 20,
                                                         icon: skill.icon.clone(),
-                                                        class: {skill.text_color},
+                                                        class: skill.text_color,
                                                     }
                                                 }
                                                 div {
                                                     Typography {
-                                                        text: {skill.name},
+                                                        text: skill.name,
                                                         size: "text-lg",
                                                         color: "text-black",
                                                     }
                                                 }
                                             }
                                             Typography {
-                                                text: {skill.percentage.replace("w-[", "").replace("]", "")},
+                                                text: skill.percentage.replace("w-[", "").replace("]", ""),
                                                 size: "text-lg",
                                                 color: "text-black",
                                                 class: "p-1",
@@ -214,9 +213,9 @@ pub fn SkillView() -> Element {
                                         Col {
                                             class: "flex justify-center",
                                             ProgressBar {
-                                                percentage: {skill.percentage},
+                                                percentage: skill.percentage,
                                                 rounded: "rounded-s-md",
-                                                class: {skill.bg_color},
+                                                class: skill.bg_color,
                                             }
                                         }
                                     }

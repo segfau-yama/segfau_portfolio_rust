@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use crate::components::{Card, CardHeader, CardBody, CardFooter, Col, Row, Typography};
+use crate::components::{Card, CardHeader, CardBody, Col, Row, Typography};
 
 #[derive(PartialEq, Clone)]
 pub struct CardData {
@@ -86,19 +86,19 @@ pub fn WorkView() -> Element {
                             shadow: "shadow-sm",
                             rounded: "rounded-lg",
                             CardHeader { color: "h-white", size: "h-auto",
-                                img { alt: "card-image", src: {card.image} }
+                                img { alt: "card-image", src: card.image }
                             }
                             CardBody {
                                 size: "h-auto",
                                 Typography {
-                                    text: {card.title},
+                                    text: card.title,
                                     size: "text-xl",
                                     color: "text-slate-800",
                                     position: "text-left",
                                     class: "my-2 font-semibold",
                                 }
                                 Typography {
-                                    text: {card.text},
+                                    text: card.text,
                                     size: "text-base",
                                     color: "text-slate-600",
                                     position: "text-left",

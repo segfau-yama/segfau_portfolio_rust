@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-use crate::components::Avatar;
 
 #[derive(PartialEq, Clone, Props)]
 pub struct FooterProps {

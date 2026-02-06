@@ -1,4 +1,4 @@
-use crate::components::{Card, Avatar, Timeline, TimelineItem, Parallax, Row, Col, ScrollAnchor, Typography};
+use crate::components::{ScrollAnchor};
 use crate::views::{TopView, ProfileView, SkillView, HistoryView, WorkView};
 use dioxus::prelude::*;
 

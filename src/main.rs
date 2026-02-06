@@ -49,14 +49,14 @@ pub fn Wrapper() -> Element {
         HeaderLink { name: "History".to_string(), to: "history".to_string() },
         HeaderLink { name: "Work".to_string(), to: "work".to_string() },
     ];
-    let mut header_links = use_signal(|| links);
+    let header_links = use_signal(|| links);
     let footer_links_vec: Vec<FooterLink> = vec![
         FooterLink { icon: IconArc(Arc::new(SiDiscord)), to: "https://discord.com/users/501014325138292737".to_string() },
         FooterLink { icon: IconArc(Arc::new(SiX)), to: "https://twitter.com/VyaVma".to_string() },
         FooterLink { icon: IconArc(Arc::new(SiGithub)), to: "https://github.com/segfau-yama".to_string() },
         FooterLink { icon: IconArc(Arc::new(SiGmail)), to: "mailto:suiki547@gmail.com".to_string() },
     ];
-    let mut footer_links = use_signal(|| footer_links_vec);
+    let footer_links = use_signal(|| footer_links_vec);
 
     rsx! {
         div { class: "bg-gray-100",
