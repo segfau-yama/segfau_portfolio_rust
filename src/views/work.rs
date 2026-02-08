@@ -73,7 +73,7 @@ pub fn WorkView() -> Element {
                 size: "text-5xl",
                 color: "text-black",
                 position: "text-center",
-                class: "font-bold mb-6",
+                class: "mb-6",
             }
             Row {
                 cols: "grid-cols-1",

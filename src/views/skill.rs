@@ -1,9 +1,9 @@
 use dioxus::prelude::*;
-use crate::components::{Card, CardHeader, CardBody, Col, Row, Typography, ProgressBar};
+use crate::components::{Card, CardHeader, CardBody, Col, Row, Typography, ProgressBar, Flexbox};
 use crate::logics::IconArc;
 use hmziq_dioxus_free_icons::icons::fa_solid_icons::{FaDna};
 use hmziq_dioxus_free_icons::icons::si_icons::{
-    SiReact, SiVuedotjs, SiFastapi, SiPlatformio, SiArduino, SiEspressif, SiKicad, SiFreecad, SiDassaultsystemes, SiCplusplus, SiRust, SiPython, SiJavascript, 
+    SiReact, SiVuedotjs, SiFastapi, SiPlatformio, SiArduino, SiEspressif, SiKicad, SiFreecad, SiDassaultsystemes, SiCplusplus, SiRust, SiPython, SiJavascript,
 };
 use hmziq_dioxus_free_icons::Icon;
 use std::sync::Arc;
@@ -158,7 +158,7 @@ pub fn SkillView() -> Element {
                 size: "text-5xl",
                 color: "text-black",
                 position: "text-center",
-                class: "font-bold mb-6",
+                class: "mb-6",
             }
             Row {
                 cols: "grid-cols-1",
@@ -185,22 +185,22 @@ pub fn SkillView() -> Element {
                                     gap: "gap-y-2",
                                     class: "justify-center items-center",
                                     for skill in card.contents.iter() {
-                                        Col { class: "flex justify-between items-center",
-                                            div { class: "flex justify-center items-center gap-x-1",
-                                                div {
-                                                    Icon {
-                                                        width: 20,
-                                                        height: 20,
-                                                        icon: skill.icon.clone(),
-                                                        class: skill.text_color,
-                                                    }
+                                        Col {
+                                            class: "flex justify-between items-center",
+                                            Flexbox {
+                                                items: "items-center",
+                                                justify: "justify-center",
+                                                class: "items-center gap-x-1",
+                                                Icon {
+                                                    width: 20,
+                                                    height: 20,
+                                                    icon: skill.icon.clone(),
+                                                    class: skill.text_color,
                                                 }
-                                                div {
-                                                    Typography {
-                                                        text: skill.name,
-                                                        size: "text-lg",
-                                                        color: "text-black",
-                                                    }
+                                                Typography {
+                                                    text: skill.name,
+                                                    size: "text-lg",
+                                                    color: "text-black",
                                                 }
                                             }
                                             Typography {
@@ -208,7 +208,7 @@ pub fn SkillView() -> Element {
                                                 size: "text-lg",
                                                 color: "text-black",
                                                 class: "p-1",
-                                            } 
+                                            }
                                         }
                                         Col {
                                             class: "flex justify-center",

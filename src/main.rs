@@ -3,7 +3,7 @@ use dioxus::prelude::*;
 use hmziq_dioxus_free_icons::icons::si_icons::{SiDiscord, SiX, SiGithub, SiGmail};
 use hmziq_dioxus_free_icons::Icon;
 use pages::Home;
-use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar};
+use components::{Header, HeaderItem, HeaderTitle, HeaderItemWrapper, Footer, ScrollHandle, ScrollLink, Avatar, Container, Flexbox, Typography};
 use logics::IconArc;
 mod components;
 mod views;
@@ -59,8 +59,10 @@ pub fn Wrapper() -> Element {
     let footer_links = use_signal(|| footer_links_vec);
 
     rsx! {
-        div { class: "bg-gray-100",
-            Header { color: "bg-emerald-500", size: "py-1 lg:py-3 px-4",
+        div {
+            class: "bg-gray-100",
+            Header {
+                color: "bg-emerald-500", size: "py-1 lg:py-3 px-4",
                 HeaderTitle {
                     "Segfau-Lab"
                 }
@@ -72,19 +74,28 @@ pub fn Wrapper() -> Element {
                     }
                 }
             }
-            div { class: "container bg-white pb-10 max-w-screen-xl mx-auto", Home {} }
+            Container {
+                color: "bg-white",
+                class: "pb-10 max-w-screen-xl mx-auto",
+                Home {}
+            }
             Footer {
                 color: "bg-emerald-500",
                 size: "px-4 py-2 lg:px-8 lg:py-3",
-                div { class: "container flex flex-wrap items-center justify-between text-slate-50 max-w-screen-xl mx-auto",
+                Flexbox {
+                    items: "items-center",
+                    justify: "justify-between",
+                    class: "flex-wrap text-slate-50 max-w-screen-xl mx-auto",
                     Avatar {
                         image: "https://segfau-yama.github.io/segfau-portfolio/assets/segfau_icon-b657bf7d.webp",
                         rounded: "rounded-full",
                         size: "size-16",
                     }
-                    div { class: "flex flex-wrap items-center gap-y-2 gap-x-8",
+                    Flexbox {
+                        items: "items-center",
+                        class: "flex-wrap gap-y-2 gap-x-8",
                         for link in footer_links.iter() {
-                            a { href: link.to.clone(), 
+                            a { href: link.to.clone(),
                                 Icon {
                                     width: 30,
                                     height: 30,
@@ -94,8 +105,12 @@ pub fn Wrapper() -> Element {
                         }
                     }
                 }
-                p { class: "block mb-4 text-sm text-center text-slate-100 md:mb-0 border-t border-slate-200 mt-4 pt-4",
-                    " Copyright © 2026 YamaYama. "
+                Typography {
+                    text: "Copyright © 2026 YamaYama.",
+                    color: "text-slate-50",
+                    size: "text-sm",
+                    position: "text-center",
+                    class: "mb-4 md:mb-0 border-t border-slate-200 mt-4 pt-4",
                 }
             }
         }

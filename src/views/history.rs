@@ -36,7 +36,7 @@ pub fn HistoryView() -> Element {
                 size: "text-5xl",
                 color: "text-black",
                 position: "text-center",
-                class: "font-bold mb-6",
+                class: "mb-6",
             }
             Timeline {
                 for history in histories.iter() {
